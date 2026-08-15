@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VI Seminário Nacional de Sociologia — PPGS/UFS</title>
+<meta name="description" content="VI Seminário Nacional de Sociologia do PPGS/UFS. Os desafios da Sociologia e democracia em um mundo digital. Cronograma, programação e inscrições.">
+<link rel="icon" type="image/png" href="images/logo-web1.png">
+<link rel="apple-touch-icon" href="images/logo-web1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800;6..12,900&display=swap" rel="stylesheet">
+<style>
+  /* ======================================================================
+     PAINEL DE CONTROLE RÁPIDO — VARIÁVEIS GLOBAIS
+     ----------------------------------------------------------------------
+     Tudo o que você normalmente vai querer mudar (cores, fontes, textura
+     de fundo) está centralizado aqui em cima. Troque os valores abaixo e
+     o site inteiro se atualiza sozinho — não precisa mexer no resto do
+     CSS.
+     ====================================================================== */
+  :root{
+    /* --- Cores de fundo das seções --- */
+    --bg:#F5F6F9;            /* fundo padrão das seções "claras" */
+    --bg-alt:#ECEEF4;        /* fundo alternado (seções .alt, tipo zebra) */
+    --bg-subm:#EAF7FA;       /* fundo próprio da seção "Submissão de Resumo",
+                                 para não se confundir com a seção seguinte (Resultados) */
+
+    /* --- Aviso geral do site --- */
+    --aviso-display:block;    /* block = mostra o aviso | none = esconde o aviso */
+
+    /* --- Paleta principal (marca do evento) --- */
+    --navy:#0B1F3F;          /* azul bem escuro — títulos, botões, seções .dark */
+    --navy-mid:#12294F;      /* variação intermediária do azul escuro */
+    --blue:#2C4A93;          /* azul médio de apoio */
+    --indigo:#454BAE;        /* cor de destaque principal (links, eyebrow, ícones) */
+    --cyan:#2FB4CF;          /* cor de destaque secundária (detalhes, sublinhados) */
+
+    /* --- Texto --- */
+    --text:#151B2E;          /* texto padrão (parágrafos em fundo claro) */
+    --text-soft:#4C5470;     /* texto secundário / legendas, mais suave */
+    --line: rgba(11,31,63,0.14); /* cor das linhas/bordas finas */
+    --radius:3px;            /* raio de borda usado em botões e cartões */
+
+    /* --- Textura de fundo (rede de conexões) ---------------------------
+       Estas variáveis controlam a "textura de rede" que aparece bem sutil
+       atrás de várias seções da página. O fundo continua BRANCO — a
+       textura é só um detalhe visual por cima, quase transparente.
+
+       - troque --textura-opacidade para deixar mais forte (ex: 0.18)
+         ou mais fraca (ex: 0.04)
+       - --textura-tamanho controla o "zoom" da imagem de fundo
+       ------------------------------------------------------------------ */
+    --textura-opacidade: 0.08;   /* 0 = invisível · 1 = totalmente visível */
+    --textura-opacidade-forte: 0.14; /* usada nas seções escuras (fundo navy) */
+    --textura-tamanho: 1400px;  /* tamanho aproximado da imagem de textura */
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Barlow', sans-serif; font-size:16px; line-height:1.65;
+    position:relative;
+  }
+  h1,h2,h3,h4{
+    font-family:'Nunito Sans', sans-serif; font-weight:800; margin:0 0 .4em 0;
+    line-height:1.12; color:var(--navy); letter-spacing:-0.005em;
+  }
+  a{color:var(--indigo);}
+  .cond{font-family:'Barlow Condensed', sans-serif;}
+  .wrap{max-width:1140px; margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-family:'Barlow Condensed', sans-serif; font-weight:600; font-size:.78rem;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--indigo);
+    display:flex; align-items:center; gap:10px; margin-bottom:.9em;
+  }
+  .eyebrow::before{content:""; width:20px; height:1.5px; background:var(--cyan); display:inline-block;}
+  .placeholder{color:#9A4A1F; background:rgba(154,74,31,.07); border:1px dashed rgba(154,74,31,.4); padding:0 5px; border-radius:2px;}
+
+  /* ======================================================================
+     TEXTURA DE FUNDO — "rede de conexões"
+     ----------------------------------------------------------------------
+     O fundo da página continua BRANCO (var(--bg)/#fff). As classes abaixo
+     apenas desenham, por trás do conteúdo, uma camada bem sutil e
+     transparente com a ilustração de rede (os mesmos arquivos usados na
+     identidade visual do evento). Nada fica escuro — é só um "papel de
+     parede" discreto.
+
+     Como usar:
+     - .textura-fundo   → aplica a textura como pseudo-elemento (::before)
+                          atrás de uma seção. Adicione essa classe na
+                          <section> desejada.
+     - modificadores de posição/imagem: .textura--tr (canto sup. direito),
+       .textura--bl (canto inf. esquerdo), .textura--full (cobre a seção
+       toda, bem fraquinha) — combine com .textura-fundo.
+     - Para trocar a imagem usada em cada seção, troque a URL no
+       background-image correspondente mais abaixo.
+     - Para ajustar a intensidade em TODO o site de uma vez, mude
+       --textura-opacidade lá no :root, no topo do arquivo.
+     ====================================================================== */
+  .textura-fundo{
+    position:relative; /* necessário para o ::before se posicionar corretamente */
+    isolation:isolate;  /* evita que o mix-blend-mode "vaze" para fora da seção */
+  }
+  .textura-fundo::before{
+    content:"";
+    position:absolute; inset:0; z-index:0;
+    pointer-events:none; /* garante que a textura nunca atrapalhe cliques */
+    background-repeat:no-repeat;
+    background-size:var(--textura-tamanho);
+    mix-blend-mode:multiply;   /* faz o branco da imagem "sumir" no fundo branco */
+    opacity:var(--textura-opacidade);
+  }
+  /* garante que o conteúdo real fique sempre acima da textura */
+  .textura-fundo > .wrap{ position:relative; z-index:1; }
+
+  /* variações de posição/imagem — use uma por seção para dar variedade */
+  .textura--tr::before{ /* canto superior direito */
+    background-image:url('images/textura-rede-2.png');
+    background-position:top right;
+    -webkit-mask-image: radial-gradient(60% 60% at 100% 0%, #000 40%, transparent 100%);
+            mask-image: radial-gradient(60% 60% at 100% 0%, #000 40%, transparent 100%);
+  }
+  .textura--bl::before{ /* canto inferior esquerdo */
+    background-image:url('images/textura-rede-1.png');
+    background-position:bottom left;
+    -webkit-mask-image: radial-gradient(60% 60% at 0% 100%, #000 40%, transparent 100%);
+            mask-image: radial-gradient(60% 60% at 0% 100%, #000 40%, transparent 100%);
+  }
+  .textura--tl::before{ /* canto superior esquerdo */
+    background-image:url('images/textura-rede-3.png');
+    background-position:top left;
+    -webkit-mask-image: radial-gradient(55% 55% at 0% 0%, #000 40%, transparent 100%);
+            mask-image: radial-gradient(55% 55% at 0% 0%, #000 40%, transparent 100%);
+  }
+  .textura--br::before{ /* canto inferior direito */
+    background-image:url('images/textura-rede-2.png');
+    background-position:bottom right;
+    -webkit-mask-image: radial-gradient(55% 55% at 100% 100%, #000 40%, transparent 100%);
+            mask-image: radial-gradient(55% 55% at 100% 100%, #000 40%, transparent 100%);
+  }
+  /* versão espalhada pela seção inteira, ainda mais discreta — usada em
+     seções longas (ex.: comissão) para não deixar tudo "vazio" */
+  .textura--full::before{
+    background-image:url('images/textura-rede-3.png');
+    background-position:center; background-size:cover;
+    opacity:calc(var(--textura-opacidade) * 0.7);
+  }
+  /* em seções de fundo escuro (.dark), a textura precisa de outro modo de
+     mescla (screen em vez de multiply) e fica um pouco mais visível */
+  section.dark.textura-fundo::before,
+  section.dark .textura-fundo::before{
+    mix-blend-mode:screen;
+    opacity:var(--textura-opacidade-forte);
+  }
+
+  /* ======================================================================
+     SEÇÃO "SOBRE O SEMINÁRIO" — versão em destaque
+     ----------------------------------------------------------------------
+     Fundo branco (herdado do <section> padrão), com textura de rede bem
+     sutil no canto e um bloco de citação/tema em destaque, mais vivo,
+     usando a cor de destaque --indigo/--cyan.
+     ====================================================================== */
+  section#apresentacao{ position:relative; background:#fff; }
+
+  /* eyebrow (mini-título) com um pouco mais de peso visual nesta seção */
+  section#apresentacao .eyebrow{ color:var(--indigo); font-size:.82rem; }
+
+  /* título principal da seção — deixe maior/menor mudando font-size aqui */
+  section#apresentacao h2{
+    font-size:clamp(1.9rem, 3.2vw, 2.5rem);
+    margin-bottom:.5em;
+  }
+
+  /* parágrafos normais da apresentação */
+  section#apresentacao .lede p{
+    font-size:1.03rem;      /* tamanho da fonte do texto corrido */
+    color:var(--text-soft); /* cor do texto corrido */
+  }
+
+  /* --- BLOCO DE DESTAQUE (tema do evento) ---------------------------
+     Este é o elemento que deixa a seção "mais viva": tipografia maior,
+     cor de destaque, aspas decorativas e uma barra colorida à esquerda.
+     Para mudar a cor de destaque, troque var(--indigo)/var(--cyan) pelas
+     variáveis desejadas. Para mudar o tamanho da frase, ajuste font-size
+     em .seminario-destaque strong.
+     -------------------------------------------------------------------- */
+  .seminario-destaque{
+    position:relative;
+    margin:1.6em 0 1.7em 0;
+    padding:22px 28px 22px 30px;
+    background:linear-gradient(135deg, rgba(69,75,174,.06), rgba(47,180,207,.06));
+    border-left:4px solid var(--cyan);
+    border-radius:0 var(--radius) var(--radius) 0;
+  }
+  .seminario-destaque::before{
+    /* aspas decorativas gigantes atrás do texto */
+    content:"“";
+    position:absolute; top:-6px; left:14px;
+    font-family:'Nunito Sans', sans-serif; font-weight:900;
+    font-size:3.6rem; line-height:1; color:var(--indigo); opacity:.16;
+    pointer-events:none;
+  }
+  .seminario-destaque p{
+    margin:0; position:relative; z-index:1;
+    font-size:1.18rem;              /* <- tamanho da frase-tema */
+    line-height:1.5;
+    color:var(--navy);              /* <- cor do texto de destaque */
+  }
+  .seminario-destaque strong{
+    color:var(--indigo);   /* cor sólida de destaque (sem degradê) */
+    font-weight:800;
+  }
+
+  /* selo pequeno acima do bloco de destaque ("TEMA 2026") */
+  .seminario-destaque .selo-tema{
+    display:inline-block; margin-bottom:.55em;
+    font-family:'Barlow Condensed', sans-serif; font-weight:700;
+    font-size:.7rem; letter-spacing:.14em; text-transform:uppercase;
+    color:#fff; background:var(--indigo); padding:4px 10px; border-radius:2px;
+  }
+
+  /* cartão da edição anterior — mantém o padrão claro, só refinando bordas */
+  section#apresentacao .prev-edition{ background:#fff; }
+
+  /* BETA RIBBON */
+  .beta-ribbon{
+    position:fixed; top:14px; right:-58px; background:var(--indigo); color:#fff;
+    font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:.68rem; letter-spacing:.1em;
+    padding:5px 60px; transform:rotate(38deg); z-index:999; box-shadow:0 2px 8px rgba(0,0,0,.3); pointer-events:none;
+  }
+
+  /* NAV */
+  header.site-nav{position:sticky; top:0; z-index:100; background:rgba(245,246,249,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1140px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px;}
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--navy);}
+  .brand-num{font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.7rem; color:var(--indigo); line-height:1;}
+  .brand-text{font-family:'Nunito Sans',sans-serif; font-weight:800; font-size:.86rem; line-height:1.2; color:var(--navy);}
+  .brand-text span{display:block; font-family:'Barlow Condensed',sans-serif; font-weight:500; font-size:.66rem; letter-spacing:.08em; color:var(--text-soft); text-transform:uppercase; margin-top:2px;}
+  .brand-logo{
+  height:38px;      /* ajuste a altura conforme o tamanho do seu logo */
+  width:auto;
+  display:block;
+}
+  nav.links{display:flex; gap:22px; align-items:center; flex-wrap:wrap;}
+  nav.links a{text-decoration:none; color:var(--navy); font-weight:500; font-size:.85rem; position:relative; padding:4px 0;}
+  nav.links a::after{content:""; position:absolute; left:0; bottom:-2px; width:0; height:1.5px; background:var(--cyan); transition:width .2s ease;}
+  nav.links a:hover::after{width:100%;}
+  .nav-cta{background:var(--navy); color:#fff!important; padding:9px 18px!important; border-radius:var(--radius); font-size:.78rem!important; font-weight:600!important; text-transform:uppercase; letter-spacing:.05em;}
+  .nav-cta::after{display:none;}
+  .burger{display:none; background:none; border:1.5px solid var(--navy); border-radius:4px; width:38px; height:34px; cursor:pointer; flex-direction:column; align-items:center; justify-content:center; gap:5px;}
+  .burger span{width:18px; height:2px; background:var(--navy); display:block;}
+
+  /* Dropdown — Programação */
+  .nav-item{position:relative; display:flex; align-items:center;}
+  .nav-item .caret{display:inline-block; font-size:.62em; margin-left:3px; transform:translateY(-1px);}
+  .dropdown{
+    position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(4px);
+    min-width:220px; background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    box-shadow:0 16px 36px rgba(11,31,63,.16); padding:18px 0 8px 0;
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity .16s ease, transform .16s ease, visibility .16s ease;
+    z-index:60;
+  }
+  .nav-item:hover .dropdown, .nav-item:focus-within .dropdown{
+    opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); pointer-events:auto;
+  }
+  nav.links .dropdown a{display:block; padding:10px 20px; font-size:.84rem; color:var(--text); font-weight:500; white-space:nowrap;}
+  nav.links .dropdown a::after{display:none;}
+  nav.links .dropdown a:hover{background:var(--bg); color:var(--indigo);}
+
+  /* ======================================================================
+     AVISO IMPORTANTE DO SITE
+     ----------------------------------------------------------------------
+     Controle rápido no :root:
+       --aviso-display:block;  -> mostra o aviso
+       --aviso-display:none;   -> esconde o aviso
+
+     Para alterar a mensagem, procure no HTML por "AVISO IMPORTANTE".
+     ====================================================================== */
+  .site-alert{
+    display:var(--aviso-display);
+    background:#FFF7E8;
+    border-bottom:1px solid #E7C98E;
+  }
+
+  .site-alert-content{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:13px 0;
+  }
+
+  .site-alert-label{
+    flex-shrink:0;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#fff;
+    background:#A85F16;
+    padding:5px 9px;
+    border-radius:2px;
+  }
+
+  .site-alert p{
+    margin:0;
+    flex:1;
+    color:var(--navy);
+    font-size:.9rem;
+    line-height:1.45;
+  }
+
+  .site-alert a{
+    flex-shrink:0;
+    color:var(--navy);
+    font-size:.82rem;
+    font-weight:600;
+    text-decoration:none;
+    border-bottom:1px solid var(--navy);
+  }
+
+  .site-alert a:hover{
+    color:var(--indigo);
+    border-color:var(--indigo);
+  }
+
+  @media (max-width:760px){
+    .site-alert-content{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:8px;
+      padding:14px 0;
+    }
+  }
+
+  /* HERO */
+  .hero{position:relative; padding:70px 0 90px 0; color:var(--text); background:#fff; z-index:1;}
+  .hero .kicker{font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:.86rem; letter-spacing:.22em; text-transform:uppercase; color:var(--indigo); margin-bottom:1.1em;}
+  .hero h1{font-family:'Nunito Sans',sans-serif; font-weight:800; font-size:clamp(2.1rem,4.4vw,3.1rem); color:var(--navy); letter-spacing:-0.01em;}
+  .hero .roman{color:var(--cyan);}
+
+  .hero-grid{display:grid; grid-template-columns:1fr 1.15fr 1fr; gap:44px; align-items:center;}
+
+  /* Left — map */
+  .hero-map{display:flex; align-items:center; justify-content:center; order:1;}
+  .hero-map img{width:100%; max-width:460px; height:auto;}
+
+  /* Center — title */
+  .hero-title{text-align:center; order:2;}
+  .hero-logo-wrap{
+    display:inline-block;
+  }
+  .hero-logo{display:block; width:100%; max-width:380px; height:auto;}
+  .hero-title .theme{
+    font-family:'Barlow',sans-serif; font-weight:400; font-style:italic; font-size:clamp(1.05rem,1.5vw,1.2rem);
+    color:var(--text-soft); margin:1.5em auto 0 auto; max-width:36ch; padding-top:1.3em;
+    border-top:1px solid var(--line);
+  }
+
+  /* Right — event info */
+  .hero-info{order:3; display:flex; flex-direction:column; gap:24px; padding-left:26px; border-left:1px solid var(--line);}
+  .hero-info-item{padding-left:20px; border-left:2px solid var(--cyan);}
+  .hero-info-item span{display:block; font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; font-weight:600; font-size:.7rem; letter-spacing:.14em; color:var(--indigo); margin-bottom:5px;}
+  .hero-info-item strong{display:block; font-family:'Nunito Sans',sans-serif; font-weight:700; font-size:1.08rem; color:var(--navy); line-height:1.3;}
+
+  .hero-actions{order:4; grid-column:1 / -1; display:flex; justify-content:center; gap:16px; margin-top:56px; padding-top:44px; border-top:1px solid var(--line);}
+
+  .btn{display:inline-block; text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:.9rem; letter-spacing:.04em; text-transform:uppercase; padding:13px 28px; border-radius:var(--radius); border:1.5px solid var(--navy); transition:background .15s ease, color .15s ease, border-color .15s ease;}
+  .btn-primary{background:var(--cyan); border-color:var(--cyan); color:var(--navy);}
+  .btn-primary:hover{background:#fff; border-color:#fff;}
+  .btn-outline{background:transparent; color:#fff; border-color:rgba(255,255,255,.55); margin-left:12px;}
+  .btn-outline:hover{border-color:#fff; background:rgba(255,255,255,.08);}
+  .btn-dark{border-color:var(--navy); color:var(--navy); background:transparent;}
+  .btn-dark:hover{background:var(--navy); color:#fff;}
+  .btn-navy{background:var(--navy); border-color:var(--navy); color:#fff;}
+  .btn-navy:hover{background:var(--indigo); border-color:var(--indigo);}
+
+  section{padding:78px 0; background:var(--bg); position:relative;}
+  section.alt{background:var(--bg-alt);}
+  section.dark{background:rgba(11,31,63,.90); color:#EAEDF6;}
+  section.dark h2, section.dark h3{color:#fff;}
+  section.dark .eyebrow{color:var(--cyan);}
+  section.dark .lede p, section.dark p{color:#C3CAE0;}
+
+  .two-col{display:grid; grid-template-columns:1.5fr 1fr; gap:56px; align-items:start;}
+  .lede p{margin:0 0 1.1em 0; color:var(--text-soft);}
+
+  .prev-edition{background:#fff; border:1px solid var(--line); border-left:3px solid var(--cyan); border-radius:var(--radius); padding:26px 26px;}
+  .prev-edition .tag{font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:.72rem; color:var(--indigo); text-transform:uppercase; letter-spacing:.08em;}
+  .prev-edition h3{font-size:1.1rem; margin-top:.35em;}
+  .prev-edition p{color:var(--text-soft); font-size:.92rem; margin:.6em 0 0 0;}
+
+  /* CRONOGRAMA */
+  .crono-table{width:100%; border-collapse:collapse; margin-top:36px; background:#fff; border:1px solid var(--line);}
+  .crono-table th{background:var(--navy); color:#fff; text-align:left; padding:13px 20px; font-family:'Barlow Condensed',sans-serif; font-weight:600; letter-spacing:.05em; text-transform:uppercase; font-size:.78rem;}
+  .crono-table td{padding:14px 20px; border-bottom:1px solid var(--line); font-size:.94rem;}
+  .crono-table tr:last-child td{border-bottom:none;}
+  .crono-table td.date{font-family:'Barlow Condensed',sans-serif; font-weight:600; color:var(--indigo); white-space:nowrap; width:150px;}
+  .crono-table tr.highlight td{background:var(--bg-alt); font-weight:600; color:var(--navy);}
+
+  /* PROGRAMACAO */
+  .prog-table-wrap{overflow-x:auto; margin-top:36px; border:1px solid var(--line);}
+  .prog-table{width:100%; border-collapse:collapse; background:#fff; min-width:560px;}
+  .prog-table th{background:var(--navy); color:#fff; padding:12px 16px; font-family:'Barlow Condensed',sans-serif; font-size:.86rem; text-transform:uppercase; letter-spacing:.03em; font-weight:600;}
+  .prog-table td{padding:12px 16px; text-align:center; border-bottom:1px solid var(--line); font-size:.87rem;}
+  .prog-table td:first-child{text-align:left; font-family:'Barlow Condensed',sans-serif; font-weight:600; color:var(--navy); background:var(--bg-alt); white-space:nowrap;}
+  .prog-table tr:last-child td{font-weight:600; color:var(--navy);}
+
+  .format-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1px; margin-top:44px; background:var(--line); border:1px solid var(--line);}
+  .format-card{background:#fff; padding:26px 22px; min-height:150px; text-decoration:none; display:block; transition:background .15s ease, box-shadow .15s ease;}
+  .format-card:hover{background:var(--bg); box-shadow:inset 3px 0 0 var(--cyan);}
+  .format-card .cond{font-size:.7rem; color:var(--indigo); font-weight:600; letter-spacing:.09em; text-transform:uppercase;}
+  .format-card h4{font-size:1.02rem; margin:.4em 0 .3em 0; color:var(--navy); font-weight:700;}
+  .format-card p{font-size:.85rem; color:var(--text-soft); margin:0;}
+
+  /* ======================================================================
+     SUBMISSÃO DE RESUMO
+     ----------------------------------------------------------------------
+     Estrutura desta seção (id="submissoes"):
+       1. .subm-facts    -> tarja com os 4 dados rápidos (prazo, e-mail...)
+                            dividida em 2 colunas (subm-facts-col) na mesma
+                            proporção 1.1fr/.9fr do bloco 2, para que as
+                            linhas divisórias entre os dois blocos fiquem
+                            alinhadas verticalmente.
+       2. .subm-layout   -> duas colunas: regras de envio | estrutura do PDF
+       3. .subm-paper    -> bloco "Regras de formatação do Paper"
+                             (capa + tabela + botão de download, este último
+                             logo abaixo do quadro da capa de rosto)
+     A seção usa --bg-subm (fundo próprio, ver :root no topo do arquivo) em
+     vez do --bg-alt padrão, para não se misturar visualmente com a seção
+     "Resultados" logo em seguida.
+     Para trocar o link do modelo de paper, procure mais abaixo no HTML
+     pelo comentário "LINK DO MODELO DE PAPER" dentro do <a class="subm-dl">.
+     ====================================================================== */
+  section#submissoes{background:var(--bg-subm);}
+
+  /* 1. tarja de dados rápidos — mesma proporção 1.1fr/.9fr do bloco 2 */
+  .subm-facts{
+    display:grid; grid-template-columns:1.1fr .9fr;
+    gap:1px; margin-top:36px; background:var(--line); border:1px solid var(--line); border-bottom:none;
+  }
+  .subm-facts-col{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line);}
+  .subm-fact{background:#fff; padding:20px 22px;}
+  .subm-fact span{
+    display:block; font-family:'Barlow Condensed',sans-serif; font-weight:600;
+    font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--indigo);
+    margin-bottom:6px;
+  }
+  .subm-fact strong{display:block; font-size:1rem; color:var(--navy); font-weight:700; line-height:1.35;}
+  .subm-fact a{color:var(--navy); text-decoration:none; border-bottom:1px solid var(--cyan);}
+  .subm-fact a:hover{color:var(--indigo);}
+
+  /* 2. duas colunas: regras de envio + estrutura do PDF (mesma grade do bloco 1) */
+  .subm-layout{display:grid; grid-template-columns:1.1fr .9fr; gap:1px; margin-top:1px; background:var(--line); border:1px solid var(--line); border-top:none;}
+  .subm-col{background:#fff; padding:32px 30px;}
+  .subm-col h3{
+    font-size:.78rem; font-family:'Barlow Condensed',sans-serif; font-weight:700;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--indigo); margin:0 0 1.1em 0;
+  }
+  .subm-rules{margin:0; padding:0; list-style:none;}
+  .subm-rules li{
+    position:relative; padding-left:26px; margin-bottom:14px; font-size:.93rem;
+    color:var(--text-soft); line-height:1.55;
+  }
+  .subm-rules li::before{
+    content:"";
+    position:absolute; left:0; top:.5em; width:9px; height:9px;
+    border-radius:2px; background:var(--cyan);
+  }
+  .subm-rules strong{color:var(--navy);}
+
+  .subm-pdf-list{margin:0; padding:0; list-style:none; counter-reset:pdfitem;}
+  .subm-pdf-list li{
+    counter-increment:pdfitem; position:relative; padding:12px 0 12px 40px;
+    border-bottom:1px solid var(--line); font-size:.9rem; color:var(--text-soft); line-height:1.5;
+  }
+  .subm-pdf-list li:last-child{border-bottom:none;}
+  .subm-pdf-list li::before{
+    content:counter(pdfitem);
+    position:absolute; left:0; top:10px; width:24px; height:24px; border-radius:50%;
+    background:var(--navy); color:#fff; font-family:'Barlow Condensed',sans-serif; font-weight:700;
+    font-size:.78rem; display:flex; align-items:center; justify-content:center;
+  }
+  .subm-pdf-list strong{display:block; color:var(--navy); font-weight:700; margin-bottom:2px; font-size:.92rem;}
+  .subm-pdf-cap{
+    display:block; margin-top:6px; font-family:'Barlow Condensed',sans-serif;
+    font-size:.72rem; letter-spacing:.04em; text-transform:uppercase; color:var(--cyan);
+  }
+
+  /* 3. bloco "Regras de formatação do Paper" */
+  .subm-paper{margin-top:56px;}
+  .subm-paper-head{margin-bottom:26px;}
+  .subm-paper-head h3{font-size:1.3rem; color:var(--navy); margin:0;}
+  .subm-paper-head p{margin:.35em 0 0 0; font-size:.88rem; color:var(--text-soft); max-width:60ch;}
+
+  .subm-paper-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:36px; align-items:start;}
+
+  .subm-cover{background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .subm-cover-top{background:var(--navy); color:#fff; padding:16px 22px; font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.78rem;}
+  .subm-cover ul{margin:0; padding:18px 22px; list-style:none;}
+  .subm-cover li{padding:8px 0; border-bottom:1px dashed var(--line); font-size:.88rem; color:var(--text-soft);}
+  .subm-cover li:last-child{border-bottom:none;}
+  .subm-cover li strong{display:block; color:var(--navy); font-weight:700; font-size:.86rem; margin-bottom:1px;}
+
+  .paper-format-table{width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line);}
+  .paper-format-table td{padding:11px 18px; border-bottom:1px solid var(--line); font-size:.87rem; color:var(--text-soft); vertical-align:top;}
+  .paper-format-table tr:last-child td{border-bottom:none;}
+  .paper-format-table td:first-child{
+    width:38%; font-family:'Barlow Condensed',sans-serif; font-weight:600; letter-spacing:.03em;
+    text-transform:uppercase; font-size:.72rem; color:var(--indigo); white-space:nowrap;
+  }
+  .paper-format-table strong{color:var(--navy);}
+
+  .subm-dl{
+    display:flex; align-items:center; justify-content:center; gap:9px; text-decoration:none;
+    font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:.86rem;
+    letter-spacing:.04em; text-transform:uppercase; color:#fff; background:var(--navy);
+    border:1.5px solid var(--navy); border-radius:var(--radius); padding:14px 22px;
+    margin-top:14px; transition:background .15s ease, border-color .15s ease;
+  }
+  .subm-dl:hover{background:var(--indigo); border-color:var(--indigo);}
+  .subm-dl svg{width:16px; height:16px; flex:0 0 auto;}
+
+  @media (max-width:900px){
+    .subm-layout{grid-template-columns:1fr;}
+    .subm-paper-grid{grid-template-columns:1fr;}
+  }
+
+  /* INSCRICAO */
+  .insc-box{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:28px;
+  background:rgba(11,31,63,.92);
+  color:#fff;
+  border-radius:var(--radius);
+  padding:44px 46px;
+  margin-top:20px;
+}
+  
+  .insc-box h3{color:#fff; font-size:1.4rem;}
+  .insc-box p{color:#C3CAE0; margin:.7em 0 0 0; font-size:.92rem;}
+
+ .insc-cta{
+  grid-column:1 / -1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:12px;
+}
+
+.insc-cta .btn{
+  width:100%;
+  max-width:520px;
+  padding:18px 32px;
+  text-align:center;
+  font-size:1.05rem;
+  font-weight:700;
+}
+
+
+
+
+  /* COMISSAO */
+  .comm-block{margin-top:10px;}
+
+  /* Destaque para presidência */
+  .leadership-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+    margin-top:26px;
+  }
+  .leadership-card{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.16);
+    border-top:3px solid var(--cyan);
+    padding:24px 26px;
+    min-height:130px;
+  }
+  .leadership-card .role{
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.7rem;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:#8FD3E4;
+    display:block;
+    margin-bottom:8px;
+  }
+  .leadership-card .name{
+    font-family:'Nunito Sans',sans-serif;
+    font-weight:800;
+    font-size:1.08rem;
+    color:#fff;
+    line-height:1.35;
+  }
+
+  /* Comissões padronizadas em duas colunas */
+  .commissions-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+    margin-top:34px;
+  }
+  .commission-card{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.13);
+    padding:22px 24px;
+  }
+  .commission-card h3{
+    font-size:1rem;
+    margin:0 0 16px 0;
+    padding:0 0 10px 0;
+    border-bottom:1px solid rgba(255,255,255,.14);
+    color:#fff;
+    font-weight:700;
+  }
+  .commission-list{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px 18px;
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  .commission-list li{
+    position:relative;
+    padding-left:14px;
+    color:#DCE1F0;
+    font-family:'Nunito Sans',sans-serif;
+    font-size:.88rem;
+    line-height:1.4;
+  }
+  .commission-list li::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:.58em;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--cyan);
+  }
+
+  /* Monitores e Comitê Científico: listas longas */
+  .long-lists{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+    margin-top:18px;
+  }
+  .list-box{
+    background:rgba(255,255,255,.05);
+    border:1px dashed rgba(255,255,255,.24);
+    padding:22px 24px;
+  }
+  .list-box h3{
+    font-size:1rem;
+    margin:0 0 16px 0;
+    color:#fff;
+    font-weight:700;
+  }
+  .name-list{
+    margin:0;
+    padding-left:20px;
+    columns:2;
+    color:#C3CAE0;
+  }
+  .name-list li{
+    padding:3px 0;
+    font-size:.88rem;
+  }
+
+  @media (max-width:760px){
+  .name-list{
+    columns:1;
+  }
+}
+
+  @media (max-width:760px){
+    .leadership-grid,
+    .commissions-grid,
+    .long-lists{
+      grid-template-columns:1fr;
+    }
+    .commission-list{
+      grid-template-columns:1fr;
+    }
+  }
+
+  /* APOIO / LOGOS */
+  .apoio-titulo{
+    margin-top:10px;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.75rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--indigo);
+  }
+
+  .logos-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    margin-top:24px;
+  }
+
+  .logo-card{
+  min-height:130px;
+  background:#fff;
+  border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  text-decoration:none;
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.logo-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(11,31,63,.10);
+}
+
+.logo-card img{
+  display:block;
+  max-width:100%;
+  max-height:75px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+  .logo-card.logo-maior img{
+    max-height:90px;
+  }
+
+  .logo-card.logo-menor img{
+    max-width:75%;
+    max-height:60px;
+  }
+
+  .realizacao-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+    margin-top:24px;
+  }
+
+  .realizacao-grid .logo-card{
+    min-height:150px;
+  }
+
+  @media (max-width:900px){
+    .logos-grid{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+    .realizacao-grid{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+  }
+
+  @media (max-width:560px){
+    .logos-grid,
+    .realizacao-grid{
+      grid-template-columns:1fr;
+    }
+  }
+
+  .links-cols{display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:40px;}
+  .links-cols h4{font-size:.82rem; text-transform:uppercase; letter-spacing:.08em; font-family:'Barlow Condensed',sans-serif; color:var(--indigo); font-weight:700;}
+  .links-cols ul{list-style:none; padding:0; margin:14px 0 0 0;}
+  .links-cols li{padding:9px 0; border-bottom:1px solid var(--line);}
+  .links-cols a{text-decoration:none; font-weight:500; color:var(--navy);}
+  .links-cols a:hover{color:var(--indigo);}
+
+  /* FOOTER */
+  
+
+/* FOOTER */
+footer {
+  background: rgba(5,11,24,.95);
+  color: #DCE1F0;
+  padding: 56px 0 26px;
+  position: relative;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr .8fr .8fr;
+  align-items: start;
+  gap: 48px;
+  padding-bottom: 34px;
+  border-bottom: 1px solid rgba(255,255,255,.14);
+}
+
+/* Logo e identificação */
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.footer-brand img {
+  height: 46px;
+  width: auto;
+  display: block;
+}
+
+.footer-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--cyan);
+}
+
+/* Descrição */
+.footer-description {
+  max-width: 42ch;
+  color: #9AA4C4;
+  font-size: .9rem;
+  margin: .4rem 0 1.4rem;
+}
+
+/* Contato */
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 14px;
+}
+
+.footer-contact span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #C3CAE0;
+}
+
+.footer-contact a {
+  color: #fff;
+  font-size: .9rem;
+  text-decoration: none;
+}
+
+/* Títulos */
+footer h4 {
+  color: #fff;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+
+/* Atalhos */
+.footer-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-link-list li {
+  margin: 8px 0;
+}
+
+.footer-link-list a {
+  color: #C3CAE0;
+  text-decoration: none;
+  font-size: .88rem;
+}
+
+.footer-link-list a:hover {
+  color: #fff;
+}
+
+/* Local */
+.footer-location p {
+  color: #C3CAE0;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.footer-location .btn {
+  margin-left: 0;
+}
+
+/* Redes sociais */
+
+.social-row{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:10px;
+  margin-top:14px;
+}
+
+.social-link{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  width:auto;
+  height:auto;
+  color:#C3CAE0;
+  text-decoration:none;
+  font-size:.84rem;
+}
+
+.social-link svg{
+  width:18px;
+  height:18px;
+  fill:#fff;
+  flex-shrink:0;
+}
+
+.social-link:hover{
+  color:#fff;
+}
+
+/* Parte inferior */
+.foot-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 20px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem;
+  color: #77809E;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Celular */
+@media (max-width: 760px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .foot-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+  .reveal{
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  @media (max-width:900px){
+    .two-col{grid-template-columns:1fr;}
+    nav.links{position:fixed; top:64px; left:0; right:0; background:var(--bg); flex-direction:column; padding:20px 28px; border-bottom:1px solid var(--line); display:none; gap:16px; align-items:flex-start; max-height:calc(100vh - 64px); overflow-y:auto;}
+    nav.links.open{display:flex;}
+    .burger{display:flex;}
+    .nav-item{flex-direction:column; align-items:flex-start; width:100%;}
+    .dropdown{
+      position:static; opacity:1; visibility:visible; pointer-events:auto; transform:none;
+      box-shadow:none; border:none; border-left:2px solid var(--line);
+      padding:2px 0 2px 16px; margin:8px 0 0 0; display:flex; flex-direction:column; gap:10px; width:100%;
+    }
+    nav.links .dropdown a{padding:0; font-size:.82rem; color:var(--text-soft);}
+    nav.links .dropdown a:hover{background:transparent; color:var(--indigo);}
+    .hero{padding:100px 0 70px 0;}
+    .insc-box{grid-template-columns:1fr;}
+    .links-cols{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:760px){
+    .footer-top{grid-template-columns:1fr;}
+    .hero-grid{grid-template-columns:1fr; gap:36px; text-align:center;}
+    .hero-title{order:1;}
+    .hero-logo{max-width:260px;}
+    .hero-logo-wrap{padding:24px 28px;}
+    .hero-title .theme{margin:1.3em auto 0 auto; max-width:none;}
+    .hero-map{order:2;}
+    .hero-map img{max-width:280px;}
+    .hero-info{order:3; border-left:none; padding-left:0; align-items:center; border-top:1px solid var(--line); padding-top:26px;}
+    .hero-info-item{border-left:none; border-top:2px solid var(--cyan); padding-left:0; padding-top:10px; text-align:center;}
+    .hero-actions{order:4; margin-top:36px; padding-top:30px; flex-wrap:wrap;}
+  }
+
+  /* SUBPAGES — programação detalhada */
+  .page-hero{padding:56px 0 8px 0; background:#fff;}
+  .breadcrumb{
+    font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:.8rem; letter-spacing:.05em;
+    color:var(--text-soft); text-decoration:none; display:inline-flex; align-items:center; gap:6px; margin-bottom:26px;
+  }
+  .breadcrumb:hover{color:var(--indigo);}
+
+  .session-list{margin-top:40px; display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .session-item{background:#fff; padding:26px 28px; display:grid; grid-template-columns:170px 1fr; gap:22px; align-items:start;}
+  .session-item .when{font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:.78rem; letter-spacing:.06em; color:var(--indigo); text-transform:uppercase; line-height:1.5;}
+  .session-item h4{margin:0 0 .35em 0; font-size:1.08rem; color:var(--navy);}
+  .session-item p{margin:0 0 .5em 0; font-size:.9rem; color:var(--text-soft);}
+  .session-item p:last-child{margin-bottom:0;}
+  .session-item .tag{display:inline-block; margin-top:6px; font-size:.72rem; font-family:'Barlow Condensed',sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--cyan); font-weight:600;}
+
+  @media (max-width:640px){
+    .session-item{grid-template-columns:1fr; gap:8px;}
+  }
+
+</style>
+</head>
+<body>
+
+<div class="beta-ribbon">VERSÃO BETA</div>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#inicio" class="brand">
+  <img src="images/logo-topo.png" alt="VI Seminário Nacional de Sociologia — PPGS · UFS" class="brand-logo">
+  </a>
+    <button class="burger" id="burger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    <nav class="links" id="navLinks">
+      <a href="#inicio">Início</a>
+      <a href="#cronograma">Cronograma</a>
+      <div class="nav-item">
+        <a href="#programacao">Programação <span class="caret">▾</span></a>
+        <div class="dropdown">
+          <a href="conferencias.html">Conferências</a>
+          <a href="gts.html">Grupos de Trabalho</a>
+          <a href="mesas.html">Mesas-redondas</a>
+          <a href="oficinas.html">Oficinas</a>
+          <a href="webinar.html">Webinar</a>
+        </div>
+      </div>
+      <a href="#submissoes">Submissão de Resumo</a>
+      <a href="#comissao">Comissão</a>
+      <a href="#apoio">Apoio &amp; Links</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#inscricao" class="nav-cta">Inscrição</a>
+    </nav>
+  </div>
+</header>
+
+<!-- =====================================================================
+     AVISO IMPORTANTE
+     ---------------------------------------------------------------------
+     Para MOSTRAR: no :root, use --aviso-display:block;
+     Para ESCONDER: no :root, use --aviso-display:none;
+
+     Edite abaixo o nome da atividade, a data/horário e o link, se necessário.
+     ===================================================================== -->
+<div class="site-alert" role="status" aria-live="polite">
+  <div class="wrap">
+    <div class="site-alert-content">
+      <span class="site-alert-label">Aviso importante</span>
+
+      <p>
+        Houve uma alteração na programação do VI SNS.
+        <strong>Edite aqui a informação que precisa ser destacada.</strong>
+      </p>
+
+      <a href="#programacao">Ver programação</a>
+    </div>
+  </div>
+</div>
+
+<section class="hero textura-fundo textura--bl" id="inicio">
+  <div class="wrap reveal">
+    <div class="hero-grid">
+      <div class="hero-map">
+        <img src="images/mapa-vi-sns.png" alt="Mapa do Brasil em rede — identidade visual do VI SNS" loading="eager">
+      </div>
+
+      <div class="hero-title">
+        <div class="hero-logo-wrap">
+          <img src="images/logo-sns.png" alt="VI Seminário Nacional de Sociologia — PPGS · UFS" class="hero-logo">
+        </div>
+        <p class="theme">Os desafios da Sociologia e democracia em um mundo digital</p>
+      </div>
+
+      <div class="hero-info">
+        <div class="hero-info-item">
+          <span>Data</span>
+          <strong>09 a 11 de novembro de 2026</strong>
+        </div>
+        <div class="hero-info-item">
+          <span>Local</span>
+          <strong>Didática VII — UFS, São Cristóvão</strong>
+        </div>
+        <div class="hero-info-item">
+          <span>Realização</span>
+          <strong>PPGS / UFS</strong>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#inscricao" class="btn btn-primary">Inscreva-se</a>
+        <a href="#programacao" class="btn btn-dark">Ver programação</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SEÇÃO: SOBRE O SEMINÁRIO
+     - Fundo branco + textura de rede bem sutil no canto superior direito
+       (classe .textura-fundo .textura--tr).
+     - O parágrafo do tema fica dentro de .seminario-destaque, com
+       tipografia maior e cor em degradê — é o texto "mais vivo" pedido.
+     - Para trocar o canto onde a textura aparece, troque a classe
+       .textura--tr por .textura--tl / .textura--bl / .textura--br.
+========================================================================= -->
+<section id="apresentacao" class="textura-fundo textura--tr">
+  <div class="wrap two-col reveal">
+    <div>
+  
+      <h2>Sobre o Seminário</h2>
+      <div class="lede">
+        <p>O Programa de Pós-Graduação em Sociologia (PPGS) da Universidade Federal de Sergipe (UFS) realiza, entre os dias 09 e 11 de novembro de 2026, o VI Seminário Nacional de Sociologia (VI SNS).</p>
+
+        <!-- Bloco de destaque do tema — texto maior, colorido e com aspas
+             decorativas. Edite o texto abaixo livremente; o estilo (cor,
+             tamanho) é controlado pela classe .seminario-destaque no CSS. -->
+        <div class="seminario-destaque">
+          <span class="selo-tema">Tema 2026</span>
+          <p>Esta edição convida a comunidade acadêmica a refletir sobre os efeitos das transformações digitais na vida democrática, na produção do conhecimento sociológico e nas formas contemporâneas de participação e disputa política, sob o tema <strong>“Os desafios da Sociologia e democracia em um mundo digital”</strong>.</p>
+        </div>
+
+        <p>A identidade visual desta edição parte da ideia de uma sociedade conectada, plural e em constante transformação — traduzida em redes, fluxos e conexões que atravessam o país, em diálogo direto com o tema proposto.</p>
+      </div>
+    </div>
+    <div>
+      <div class="prev-edition">
+        <span class="tag">Edição anterior</span>
+        <h3>V Seminário Nacional de Sociologia — 2024</h3>
+        <p><strong>Tema:</strong> "Sociologia e Internacionalização: Explorando novos horizontes e desafios"</p>
+        <p>Realizado entre 08 e 10 de outubro de 2024, com conferência de abertura do Prof. Dr. Antonio da Silveira Brasil Jr. (PPGSA/UFRJ), o V SNS reafirmou o compromisso do PPGS/UFS com a internacionalização da Sociologia a partir das mediações Sul-Sul.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Textura no canto inferior esquerdo desta seção (troque a classe
+     .textura--bl para mudar de canto/imagem — ver comentário no CSS) -->
+<section class="alt textura-fundo textura--bl" id="cronograma">
+  <div class="wrap reveal">
+    <h2>Cronograma</h2>
+    <p class="lede" style="max-width:60ch; color:var(--text-soft);">Datas oficiais do VI SNS.</p>
+    <table class="crono-table">
+      <thead><tr><th>Data</th><th>Atividade</th></tr></thead>
+      <tbody>
+        <tr><td class="date">07 a 26/08</td><td>Submissão de propostas de Mesas Redondas, Minicursos, GTs e Oficinas</td></tr>
+        <tr><td class="date">31/08</td><td>Divulgação das propostas aprovadas</td></tr>
+        <tr><td class="date">01 a 15/09</td><td>Submissão de resumos</td></tr>
+        <tr><td class="date">27/09</td><td>Resultado dos resumos aprovados</td></tr>
+        <tr><td class="date">31/10</td><td>Envio dos papers completos</td></tr>
+        <tr class="highlight"><td class="date">09 a 11/11</td><td>VI Seminário Nacional de Sociologia</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="programacao" class="textura-fundo textura--tl">
+  <div class="wrap reveal">
+    <h2>Grade do evento</h2>
+    <p class="lede" style="max-width:60ch; color:var(--text-soft);">Estrutura geral dos três dias do VI SNS. Títulos, coordenações e locais/links de cada atividade serão publicados assim que confirmados.</p>
+    <div class="prog-table-wrap">
+      <table class="prog-table">
+        <thead><tr><th>Horário</th><th>09/11</th><th>10/11</th><th>11/11</th></tr></thead>
+        <tbody>
+          <tr><td>8h – 9h</td><td>Credenciamento</td><td>Credenciamento</td><td>Credenciamento</td></tr>
+          <tr><td>9h – 11h</td><td>GTs</td><td>GTs</td><td>GTs</td></tr>
+          <tr><td>11h30 – 13h</td><td>Oficina</td><td>Oficina</td><td>Oficina</td></tr>
+          <tr><td>14h – 16h</td><td>Mesas Redondas</td><td>Mesas Redondas</td><td>Mesas Redondas</td></tr>
+          <tr><td>16h – 16h30</td><td>Coffee-break</td><td>Coffee-break</td><td>Coffee-break</td></tr>
+          <tr><td>16h30 – 19h</td><td>Mesas Redondas</td><td>Mesas Redondas</td><td>Mesas Redondas</td></tr>
+          <tr><td>19h30 – 21h30</td><td>Conferência de Abertura</td><td>Conferência de Meio</td><td>Conferência de Encerramento</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="format-grid">
+      <a href="conferencias.html" class="format-card"><span class="cond">Conferências</span><h4>Três falas centrais</h4><p>Abertura, meio e encerramento do evento, com convidados nacionais.</p></a>
+      <a href="gts.html" class="format-card"><span class="cond">GTs</span><h4>Grupos de Trabalho</h4><p>Sessões temáticas de apresentação de resumos, por dia e por eixo.</p></a>
+      <a href="mesas.html" class="format-card"><span class="cond">Mesas</span><h4>Mesas-redondas</h4><p>Debates com coordenação, expositores e debatedores convidados.</p></a>
+      <a href="oficinas.html" class="format-card"><span class="cond">Oficinas</span><h4>Até sete propostas</h4><p>Atividades formativas práticas, com vagas limitadas por oficina.</p></a>
+      <a href="webinar.html" class="format-card"><span class="cond">Webinar</span><h4>Atividade remota</h4><p>Transmissão aberta ao público pelo canal do YouTube do evento.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SEÇÃO: SUBMISSÃO DE RESUMO
+     --------------------------------------------------------------------------
+     Ordem do conteúdo:
+       1) .subm-facts   — tarja com prazo, e-mail, formato e nº de autores
+                          (dividida em 2 colunas, alinhadas com .subm-layout)
+       2) .subm-layout  — "Regras para Envio" (esq.) + "O que o PDF deve
+                           conter" (dir., lista numerada)
+       3) .subm-paper   — "Regras de formatação do Paper" (capa + tabela)
+                           com o único botão de download do modelo (.subm-dl),
+                           no cabeçalho do bloco
+     Para atualizar datas, e-mail ou o link do modelo, edite diretamente o
+     texto/atributo dentro do bloco correspondente — cada trecho está comentado.
+     ========================================================================== -->
+<section class="alt textura-fundo textura--br" id="submissoes">
+  <div class="wrap reveal">
+    <h2>Submissão de Resumo</h2>
+    <p class="lede" style="max-width:64ch; color:var(--text-soft);">Confira abaixo as regras para envio do resumo expandido, o que deve constar no PDF e, mais adiante, as regras de formatação do Paper completo.</p>
+
+    <!-- 1. DADOS RÁPIDOS — altere aqui datas, e-mail, formato e nº de autores.
+         As duas colunas (subm-facts-col) usam a mesma proporção 1.1fr/.9fr
+         do bloco 2 (subm-layout) para que as linhas divisórias fiquem alinhadas. -->
+    <div class="subm-facts">
+      <div class="subm-facts-col">
+        <div class="subm-fact">
+          <span>Período de submissão</span>
+          <strong>02/09 a 23/09 de 2024</strong>
+        </div>
+        <div class="subm-fact">
+          <span>Envio por e-mail</span>
+          <strong><a href="mailto:vsnsufs@gmail.com">vsnsufs@gmail.com</a></strong>
+        </div>
+      </div>
+      <div class="subm-facts-col">
+        <div class="subm-fact">
+          <span>Formato do arquivo</span>
+          <strong>PDF</strong>
+        </div>
+        <div class="subm-fact">
+          <span>Autores por trabalho</span>
+          <strong>1 principal + até 2 coautores</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. DUAS COLUNAS: regras de envio | estrutura exigida do PDF -->
+    <div class="subm-layout">
+      <div class="subm-col">
+        <h3>Regras para envio de resumos</h3>
+        <ul class="subm-rules">
+          <li>Indicar o <strong>título do GT</strong> ao qual o resumo será submetido.</li>
+          <li>Cada proposta de trabalho pode ter no total <strong>3 autores</strong>: um principal e até dois coautores.</li>
+          <li>A submissão será feita exclusivamente por e-mail, em <strong>arquivo PDF</strong>, dentro do período informado ao lado.</li>
+          <li>Poderão submeter trabalhos alunos de <strong>graduação, mestrado e doutorado</strong>. A seleção respeita uma distribuição percentualmente equitativa entre essas titulações, calculada sobre o total de trabalhos recebidos.</li>
+          <li>É <strong>vedada a submissão</strong> de um mesmo trabalho para mais de um GT.</li>
+          <li>Após a aprovação, os autores têm até <strong>31/10/2024</strong> para enviar o Paper completo, que será publicado nos Anais do evento.</li>
+        </ul>
+      </div>
+      <div class="subm-col">
+        <h3>O resumo expandido (PDF) deve conter</h3>
+        <ol class="subm-pdf-list">
+          <li><strong>Título</strong>até 200 caracteres com espaço</li>
+          <li><strong>Questão central</strong>até 1.000 caracteres, com espaços</li>
+          <li><strong>Métodos e técnicas utilizados</strong>até 1.000 caracteres, com espaços</li>
+          <li><strong>Conclusões parciais ou finais</strong>até 1.000 caracteres, com espaços</li>
+          <li><strong>Relação com a temática do GT</strong>até 1.000 caracteres, com espaços</li>
+          <li><strong>Referências bibliográficas sintéticas</strong>até 6 títulos</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 3. REGRAS DE FORMATAÇÃO DO PAPER -->
+    <div class="subm-paper">
+      <div class="subm-paper-head">
+        <h3>Regras de formatação do Paper</h3>
+        <p>Depois da aprovação do resumo, o Paper completo deve ser enviado seguindo essas regras de formatação.</p>
+      </div>
+
+      <div class="subm-paper-grid">
+        <div>
+          <div class="subm-cover">
+            <div class="subm-cover-top">Capa de rosto deve conter</div>
+            <ul>
+              <li><strong>V SNS/UFS</strong> — negrito e letra 14</li>
+              <li>Título do GT</li>
+              <li>Título do trabalho</li>
+              <li>Autor(a) e coautores(as), com as respectivas filiações institucionais</li>
+            </ul>
+          </div>
+          <!-- LINK DO MODELO DE PAPER: troque o href abaixo pelo link oficial quando disponível -->
+          <a class="subm-dl" href="files/modelo2024.docx" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+            Baixar modelo do paper
+          </a>
+        </div>
+
+        <table class="paper-format-table">
+          <tbody>
+            <tr><td>Fonte</td><td><strong>Times New Roman</strong></td></tr>
+            <tr><td>Tamanho do corpo</td><td><strong>12</strong>, com alinhamento geral justificado</td></tr>
+            <tr><td>Espaçamento entre linhas</td><td><strong>1,5</strong></td></tr>
+            <tr><td>Extensão do texto</td><td><strong>40.000 a 55.000</strong> caracteres sem espaços, já com a bibliografia</td></tr>
+            <tr><td>Notas de rodapé e citações</td><td>Times New Roman, tamanho <strong>10</strong>, espaçamento simples</td></tr>
+            <tr><td>Margem superior</td><td><strong>3,3 cm</strong></td></tr>
+            <tr><td>Margem inferior</td><td><strong>2,5 cm</strong></td></tr>
+            <tr><td>Margens laterais</td><td><strong>2,9 cm</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt textura-fundo textura--br" id="resultados">
+  <div class="wrap reveal">
+   
+    <h2>Resultados</h2>
+    <p class="lede" style="max-width:60ch; color:var(--text-soft);">Confira os resultados das submissões de resumos do VI Seminário Nacional de Sociologia.</p>
+    <div style="margin-top:28px;">
+      <a href="resultados.html" class="btn btn-navy" aria-label="Acessar resultados">Acessar resultados</a>
+    </div>
+  </div>
+</section>
+
+<section id="inscricao">
+  <div class="wrap reveal">
+    <h2>Inscrição</h2>
+    <div class="insc-box">
+      <div>
+        <h3>Garanta sua vaga no VI SNS</h3>
+        <p>As inscrições para ouvintes e oficinas só serão aceitas através do portal de eventos da UFS (SIGAA) até <span class="placeholder" style="color:#FFD9C4; background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.4);">data a definir</span>. Você deverá se inscrever na atividade geral e, se desejar, poderá se inscrever em apenas uma das oficinas disponíveis — inscrições em mais de uma oficina serão automaticamente canceladas.</p>
+        <p>Após a inscrição on-line, o credenciamento presencial deverá ser feito no dia <span class="placeholder" style="color:#FFD9C4; background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.4);">data a definir</span>, até às 18h30, na Didática VII, na UFS.</p>
+      </div>
+      <div class="insc-cta">
+        <a href="https://www.sigaa.ufs.br/sigaa/public/portal_cursos_eventos/login.jsf?aba=p-extensao" target="_blank" rel="noopener" class="btn btn-primary">Inscrever-se no SIGAA</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark textura-fundo textura--full" id="comissao">
+  
+  <div class="wrap reveal">
+    <h2>Comissão Organizadora</h2>
+    <p class="lede" style="max-width:65ch;">
+      Conheça a equipe responsável pela organização e realização do VI Seminário Nacional de Sociologia.
+    </p>
+
+    <!-- Presidência em destaque -->
+    <div class="leadership-grid">
+      <div class="leadership-card">
+        <span class="role">Presidente</span>
+        <span class="name">Prof. Dr. Marco Aurélio Dias de Souza</span>
+      </div>
+
+      <div class="leadership-card">
+        <span class="role">Vice-Presidente</span>
+        <span class="name">Prof. Dr. Éder Cláudio Malta Souza</span>
+      </div>
+    </div>
+
+    <!-- Comissões -->
+    <div class="commissions-grid">
+
+      <div class="commission-card">
+  <h3>Comissão Geral e de Monitoria</h3>
+  <ul class="commission-list">
+    <li>Amanda Beatriz Martins Silva</li>
+    <li>Brenda de Souza Seixas</li>
+  </ul>
+</div>
+
+<div class="commission-card">
+  <h3>Comissão Cultural</h3>
+  <ul class="commission-list">
+    <li>Felícia Clark Nunes Teles</li>
+    <li>Luciana Barreto Dinelli</li>
+    <li>Raiane de Jesus Santos</li>
+    <li>Tiago Damasceno Pereira</li>
+  </ul>
+</div>
+
+<div class="commission-card">
+  <h3>Comissão de Divulgação</h3>
+  <ul class="commission-list">
+    <li>Andrea Santos Lima</li>
+    <li>Delorrana Lima Machado</li>
+    <li>Olavo Matheus Costa dos Passos</li>
+  </ul>
+</div>
+
+<div class="commission-card">
+  <h3>Comissão de Logística</h3>
+  <ul class="commission-list">
+    <li>Aline Rangel Goothuzem Albuquerque</li>
+    <li>Ana Flávia Pires Leal</li>
+    <li>Maria Clara Souza Santos</li>
+  </ul>
+</div>
+
+    </div>
+
+    <!-- Listas longas -->
+    <div class="long-lists">
+
+      <div class="list-box">
+  <h3>Monitores</h3>
+
+  <div class="monitores-aviso">
+    <strong>EM BREVE!</strong>
+
+    <p class="monitores-periodo">
+      Período para inscrição: de 01/10/2026 a 01/10/2026
+    </p>
+
+    <p>
+      O Programa de Pós-Graduação em Sociologia (PPGS-UFS) convida estudantes
+      de graduação e pós-graduação a participarem como monitores voluntários
+      do VI SNS.
+    </p>
+
+    <p>
+      A participação é uma forma de vivenciar o evento por dentro e de habitar
+      ativamente espaços de diálogo. Ao trocar experiências e fortalecer
+      conexões com pesquisadores e estudantes de diferentes áreas, findamos
+      por tecer a malha que fará nossa sociologia proliferante emergir.
+    </p>
+  </div>
+
+  <!--
+  ============================================================
+  LISTA DE MONITORES
+  Quando os monitores forem definidos, apague o aviso acima
+  e retire este conteúdo do comentário.
+  ============================================================
+
+  <ul class="name-list">
+    <li>Nome do monitor</li>
+    <li>Nome do monitor</li>
+    <li>Nome do monitor</li>
+    <li>Nome do monitor</li>
+  </ul>
+
+  -->
+
+</div>
+
+      <div class="list-box">
+  <h3>Comitê Científico</h3>
+
+  <div class="comite-aviso">
+    <strong>A DEFINIR</strong>
+  </div>
+
+  <!--
+  ============================================================
+  LISTA DO COMITÊ CIENTÍFICO
+  Quando os integrantes forem definidos, apague o aviso acima
+  e retire este conteúdo do comentário.
+  ============================================================
+
+  <ul class="name-list">
+    <li>Prof. Dr. Nome do integrante</li>
+    <li>Profa. Dra. Nome do integrante</li>
+    <li>Prof. Dr. Nome do integrante</li>
+    <li>Profa. Dra. Nome do integrante</li>
+  </ul>
+
+  -->
+
+</div>
+
+    </div>
+  </div>
+</section>
+
+<section class="alt textura-fundo textura--tr" id="apoio">
+  <div class="wrap reveal">
+   
+    <h2>Realização &amp; Apoio</h2>
+
+    <!--
+      ================================================================
+      LOGOS — COMO USAR
+      ================================================================
+      Coloque os arquivos dos logos dentro da pasta "images".
+
+      Exemplo:
+      images/logo-ppgs.png
+      images/logo-ufs.png
+      images/logo-capes.png
+
+      Depois, basta trocar o nome do arquivo no atributo src="".
+      Você pode adicionar ou remover cartões conforme necessário.
+
+      Se o logo tiver fundo transparente (PNG), melhor ainda.
+      ================================================================
+    -->
+
+    <div class="apoio-titulo">Realização</div>
+
+    <div class="realizacao-grid">
+
+  <!-- PPGS / UFS -->
+  <a
+    href="https://www.sigaa.ufs.br/sigaa/public/programa/portal.jsf?id=139"
+    target="_blank"
+    rel="noopener"
+    class="logo-card logo-maior"
+    aria-label="Acessar o site do Programa de Pós-Graduação em Sociologia da UFS"
+  >
+    <img
+      src="images/ppgs.jpeg"
+      alt="PPGS — UFS"
+    >
+  </a>
+
+  <!-- Universidade Federal de Sergipe -->
+  <a
+    href="https://www.ufs.br"
+    target="_blank"
+    rel="noopener"
+    class="logo-card logo-maior"
+    aria-label="Acessar o site da Universidade Federal de Sergipe"
+  >
+    <img
+      src="images/ufs.png"
+      alt="Universidade Federal de Sergipe"
+    >
+  </a>
+
+</div>
+
+    
+
+    <div class="apoio-titulo" style="margin-top:40px;">Apoio</div>
+
+    <div class="logos-grid">
+
+  <!-- CAPES -->
+  <a
+    href="https://www.gov.br/capes/"
+    target="_blank"
+    rel="noopener"
+    class="logo-card"
+    aria-label="Acessar o site da CAPES"
+  >
+    <img
+      src="images/capes.png"
+      alt="CAPES"
+    >
+  </a>
+
+  <!-- Sociedade Brasileira de Sociologia -->
+  <a
+    href="https://sbsociologia.org.br/"
+    target="_blank"
+    rel="noopener"
+    class="logo-card"
+    aria-label="Acessar o site da Sociedade Brasileira de Sociologia"
+  >
+    <img
+      src="images/sbs.webp"
+      alt="Sociedade Brasileira de Sociologia"
+    >
+  </a>
+
+  <!-- FAPESE -->
+  <a
+    href="https://www.fapese.org.br/"
+    target="_blank"
+    rel="noopener"
+    class="logo-card"
+    aria-label="Acessar o site da FAPESE"
+  >
+    <img
+      src="images/fapese.png"
+      alt="FAPESE"
+    >
+  </a>
+
+      <!--
+        Para adicionar outro parceiro, copie um bloco:
+
+        <div class="logo-card">
+          <img src="images/logo-novo-parceiro.png"
+               alt="Nome do parceiro">
+        </div>
+      -->
+
+    </div>
+
+    <div class="links-cols">
+      <div>
+        <h4>Links de interesse</h4>
+        <ul>
+          <li><a href="https://www.sigaa.ufs.br/sigaa/public/programa/portal.jsf?id=139" target="_blank" rel="noopener">PPGS – UFS</a></li>
+          <li><a href="https://periodicos.ufs.br/tomo/index" target="_blank" rel="noopener">Revista TOMO</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Edições anteriores</h4>
+        <ul>
+          <li><a href="https://ri.ufs.br/handle/riufs/12783" target="_blank" rel="noopener">I SNS — 2016</a></li>
+          <li><a href="https://plataforma9.com/congressos/seminario-nacional-sociologia-ufs.htm" target="_blank" rel="noopener">II SNS — 2018</a></li>
+          <li><a href="https://snsociologia.wixsite.com/iiisemnacsociologia" target="_blank" rel="noopener">III SNS — 2020</a></li>
+          <li><a href="https://snsociologia2022.wixsite.com/ivsnsufs" target="_blank" rel="noopener">IV SNS — 2022</a></li>
+          <li><a href="https://snsociologiaufs.com.br" target="_blank" rel="noopener">V SNS — 2024</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+
+    <div class="footer-top">
+
+      <!-- EVENTO / CONTATO -->
+      <div class="footer-info">
+
+        <div class="footer-brand">
+          <img
+            src="images/logo-rodape.png"
+            alt="VI Seminário Nacional de Sociologia — PPGS/UFS"
+          >
+
+          <div>
+            <div class="footer-label">VI SNS · 2026</div>
+          </div>
+        </div>
+
+        <p class="footer-description">
+          Programa de Pós-Graduação em Sociologia<br>
+          Universidade Federal de Sergipe
+        </p>
+
+        <div class="footer-contact">
+          <span>Contato</span>
+          <a href="mailto:visnsufs@gmail.com">
+            visnsufs@gmail.com
+          </a>
+        </div>
+
+       
+        <div class="social-row">
+
+  <!-- Instagram VI SNS -->
+  <a
+    href="https://instagram.com/visnsufs"
+    target="_blank"
+    rel="noopener"
+    class="social-link"
+    aria-label="Instagram VI SNS"
+  >
+    <svg viewBox="0 0 24 24">
+      <path d="M12 2c2.7 0 3.05.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.07.06 1.41.06 4.13s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.07.05-1.41.06-4.12.06s-3.05-.01-4.12-.06c-.87-.04-1.56-.13-2.14-.31a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76a4.9 4.9 0 0 1 1.76-1.15c.64-.25 1.37-.42 2.43-.47C8.95 2.01 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.4-8.4a1.17 1.17 0 1 0 0-2.34 1.17 1.17 0 0 0 0 2.34z"/>
+    </svg>
+
+    <span>@visnsufs</span>
+  </a>
+
+
+  <!-- Instagram PPGS/UFS -->
+  <a
+    href="https://instagram.com/ppgs.ufs"
+    target="_blank"
+    rel="noopener"
+    class="social-link"
+    aria-label="Instagram PPGS UFS"
+  >
+    <svg viewBox="0 0 24 24">
+      <path d="M12 2c2.7 0 3.05.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.07.06 1.41.06 4.13s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.07.05-1.41.06-4.12.06s-3.05-.01-4.12-.06c-.87-.04-1.56-.13-2.14-.31a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76a4.9 4.9 0 0 1 1.76-1.15c.64-.25 1.37-.42 2.43-.47C8.95 2.01 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.4-8.4a1.17 1.17 0 1 0 0-2.34 1.17 1.17 0 0 0 0 2.34z"/>
+    </svg>
+
+    <span>@ppgs.ufs</span>
+  </a>
+
+
+  <!-- YouTube VI SNS -->
+  <a
+    href="https://www.youtube.com/@vsnsufs2024"
+    target="_blank"
+    rel="noopener"
+    class="social-link"
+    aria-label="YouTube VI SNS"
+  >
+    <svg viewBox="0 0 24 24">
+      <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14C4.49 20.5 12 20.5 12 20.5s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/>
+    </svg>
+
+    <span>YouTube VI SNS</span>
+  </a>
+
+</div>
+
+
+        
+      </div>
+
+
+      <!-- ATALHOS -->
+      <div class="footer-nav">
+        <h4>Atalhos</h4>
+
+        <ul class="footer-link-list">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#programacao">Programação</a></li>
+          <li><a href="#resultados">Resultados</a></li>
+          <li><a href="#inscricao">Inscrição</a></li>
+        </ul>
+      </div>
+
+
+      <!-- LOCAL -->
+      <div class="footer-location">
+        <h4>Local</h4>
+
+        <p>
+          Didática VII — UFS<br>
+          São Cristóvão, Sergipe
+        </p>
+
+        <a
+          href="https://maps.app.goo.gl/8ikUXxegfczGUgFb9?g_st=ac"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline"
+        >
+          Ver no Google Maps
+        </a>
+      </div>
+
+    </div>
+
+
+    <!-- RODAPÉ INFERIOR -->
+    <div class="foot-bottom">
+      <span>SNS · PPGS/UFS — versão beta, conteúdo em revisão.</span>
+      <span>© 2026</span>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+
+  burger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  document.querySelectorAll('.reveal').forEach(element => {
+    observer.observe(element);
+  });
+</script>
+
+</body>
+</html>
