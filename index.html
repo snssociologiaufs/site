@@ -56,11 +56,16 @@
     --textura-tamanho: 1400px;  /* tamanho aproximado da imagem de textura */
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{
+    scroll-behavior:smooth;
+    -webkit-text-size-adjust:100%;
+    text-size-adjust:100%;
+  }
   body{
     margin:0; background:var(--bg); color:var(--text);
     font-family:'Barlow', sans-serif; font-size:16px; line-height:1.65;
     position:relative;
+    overflow-x:hidden;
   }
   h1,h2,h3,h4{
     font-family:'Nunito Sans', sans-serif; font-weight:800; margin:0 0 .4em 0;
@@ -68,7 +73,7 @@
   }
   a{color:var(--indigo);}
   .cond{font-family:'Barlow Condensed', sans-serif;}
-  .wrap{max-width:1140px; margin:0 auto; padding:0 28px;}
+  .wrap{width:100%; max-width:1140px; margin:0 auto; padding:0 28px;}
   .eyebrow{
     font-family:'Barlow Condensed', sans-serif; font-weight:600; font-size:.78rem;
     letter-spacing:.14em; text-transform:uppercase; color:var(--indigo);
@@ -1002,6 +1007,176 @@ footer h4 {
     .hero-actions{order:4; margin-top:36px; padding-top:30px; flex-wrap:wrap;}
   }
 
+
+  /* ======================================================================
+     AJUSTES DE RESPONSIVIDADE
+     ----------------------------------------------------------------------
+     Corrige estouros horizontais no mobile e mantém a página organizada
+     quando o navegador do celular usa a opção "Site para computador".
+     ====================================================================== */
+
+  /* Grids podem encolher sem empurrar conteúdo para fora da tela. */
+  .hero-grid > *,
+  .two-col > *,
+  .subm-facts > *,
+  .subm-facts-col > *,
+  .subm-layout > *,
+  .subm-paper-grid > *,
+  .leadership-grid > *,
+  .commissions-grid > *,
+  .long-lists > *,
+  .logos-grid > *,
+  .realizacao-grid > *,
+  .footer-top > *{
+    min-width:0;
+  }
+
+  /* Textos longos, e-mails e links nunca aumentam a largura do layout. */
+  .subm-fact strong,
+  .subm-fact a,
+  .footer-contact a,
+  .social-link,
+  .links-cols a{
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  /* Tabelas: rolagem apenas dentro da tabela, sem alargar a página inteira. */
+  .crono-table-wrap,
+  .prog-table-wrap{
+    width:100%;
+    max-width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .crono-table-wrap{
+    margin-top:36px;
+    border:1px solid var(--line);
+    background:#fff;
+  }
+
+  .crono-table-wrap .crono-table{
+    margin-top:0;
+    border:0;
+  }
+
+  .paper-format-table{
+    table-layout:fixed;
+  }
+
+  .paper-format-table td{
+    overflow-wrap:anywhere;
+    word-break:normal;
+  }
+
+  /* Faixa intermediária: também cobre celulares usando "Site para computador". */
+  @media (max-width:1050px){
+    .wrap{padding-left:22px; padding-right:22px;}
+    section{padding-top:64px; padding-bottom:64px;}
+
+    .nav-inner{padding:12px 22px; gap:14px;}
+    nav.links{gap:12px;}
+    nav.links a{font-size:.79rem;}
+    .nav-cta{padding:8px 13px!important; font-size:.74rem!important;}
+    .brand-logo{height:34px;}
+
+    .hero-grid{gap:28px;}
+    .hero-title .theme{font-size:1.05rem;}
+    .hero-info{gap:18px; padding-left:18px;}
+    .hero-info-item{padding-left:14px;}
+    .hero-info-item strong{font-size:1rem;}
+
+    .two-col{gap:36px;}
+
+    /* Os quatro quadros de Submissão deixam de disputar quatro colunas. */
+    .subm-facts{grid-template-columns:1fr;}
+    .subm-facts-col{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .subm-layout{grid-template-columns:1fr;}
+    .subm-paper-grid{grid-template-columns:1fr; gap:24px;}
+
+    .footer-top{grid-template-columns:1fr 1fr; gap:36px;}
+
+    .crono-table th,
+    .crono-table td{padding-left:16px; padding-right:16px;}
+
+    .prog-table th,
+    .prog-table td{padding-left:12px; padding-right:12px;}
+  }
+
+  @media (max-width:760px){
+    .wrap{padding-left:18px; padding-right:18px;}
+    section{padding-top:52px; padding-bottom:52px;}
+
+    h2{font-size:1.65rem;}
+    section#apresentacao h2{font-size:1.8rem;}
+
+    .seminario-destaque{
+      margin:1.3em 0 1.4em;
+      padding:20px 18px 20px 22px;
+    }
+    .seminario-destaque p{font-size:1.03rem;}
+
+    .hero{padding:64px 0 58px;}
+    .hero-logo-wrap{padding:12px 0;}
+    .hero-actions{gap:10px;}
+    .hero-actions .btn{
+      width:100%;
+      max-width:320px;
+      text-align:center;
+    }
+
+    /* Submissão: tudo fica contido na mesma largura das demais seções. */
+    .subm-facts{margin-top:28px;}
+    .subm-facts-col{grid-template-columns:1fr;}
+    .subm-fact{padding:18px;}
+    .subm-fact strong{font-size:.95rem;}
+    .subm-col{padding:24px 20px;}
+    .subm-paper{margin-top:42px;}
+    .subm-paper-head h3{font-size:1.15rem;}
+    .subm-cover-top{padding:14px 18px;}
+    .subm-cover ul{padding:16px 18px;}
+    .subm-dl{padding:13px 16px; font-size:.82rem;}
+
+    .paper-format-table td{
+      padding:10px 12px;
+      font-size:.82rem;
+    }
+    .paper-format-table td:first-child{
+      width:40%;
+      white-space:normal;
+      font-size:.68rem;
+    }
+
+    /* Cronograma e grade preservam as colunas e rolam horizontalmente. */
+    .crono-table{min-width:600px;}
+    .prog-table{min-width:620px;}
+
+    .insc-box{padding:30px 22px; gap:22px;}
+    .insc-box h3{font-size:1.2rem;}
+    .insc-cta .btn{padding:16px 20px; font-size:.95rem;}
+
+    .leadership-card,
+    .commission-card,
+    .list-box{padding:20px;}
+
+    .footer-top{grid-template-columns:1fr; gap:36px;}
+  }
+
+  @media (max-width:420px){
+    .wrap{padding-left:16px; padding-right:16px;}
+    body{font-size:15px;}
+    h2{font-size:1.5rem;}
+
+    .crono-table{min-width:560px;}
+    .prog-table{min-width:590px;}
+
+    .paper-format-table td{padding:9px 10px;}
+    .paper-format-table td:first-child{width:42%;}
+
+    .btn{padding-left:20px; padding-right:20px;}
+  }
+
   /* SUBPAGES — programação detalhada */
   .page-hero{padding:56px 0 8px 0; background:#fff;}
   .breadcrumb{
@@ -1161,17 +1336,19 @@ footer h4 {
   <div class="wrap reveal">
     <h2>Cronograma</h2>
     <p class="lede" style="max-width:60ch; color:var(--text-soft);">Datas oficiais do VI SNS.</p>
-    <table class="crono-table">
-      <thead><tr><th>Data</th><th>Atividade</th></tr></thead>
-      <tbody>
-        <tr><td class="date">07 a 26/08</td><td>Submissão de propostas de Mesas Redondas, Minicursos, GTs e Oficinas</td></tr>
-        <tr><td class="date">31/08</td><td>Divulgação das propostas aprovadas</td></tr>
-        <tr><td class="date">01 a 15/09</td><td>Submissão de resumos</td></tr>
-        <tr><td class="date">27/09</td><td>Resultado dos resumos aprovados</td></tr>
-        <tr><td class="date">31/10</td><td>Envio dos papers completos</td></tr>
-        <tr class="highlight"><td class="date">09 a 11/11</td><td>VI Seminário Nacional de Sociologia</td></tr>
-      </tbody>
-    </table>
+    <div class="crono-table-wrap" role="region" aria-label="Cronograma do evento" tabindex="0">
+      <table class="crono-table">
+        <thead><tr><th>Data</th><th>Atividade</th></tr></thead>
+        <tbody>
+          <tr><td class="date">07 a 26/08</td><td>Submissão de propostas de Mesas Redondas, Minicursos, GTs e Oficinas</td></tr>
+          <tr><td class="date">31/08</td><td>Divulgação das propostas aprovadas</td></tr>
+          <tr><td class="date">01 a 15/09</td><td>Submissão de resumos</td></tr>
+          <tr><td class="date">27/09</td><td>Resultado dos resumos aprovados</td></tr>
+          <tr><td class="date">31/10</td><td>Envio dos papers completos</td></tr>
+          <tr class="highlight"><td class="date">09 a 11/11</td><td>VI Seminário Nacional de Sociologia</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
