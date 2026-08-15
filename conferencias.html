@@ -291,16 +291,227 @@
   }
   .breadcrumb:hover{color:var(--indigo);}
 
-  .session-list{margin-top:40px; display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line);}
-  .session-item{background:#fff; padding:26px 28px; display:grid; grid-template-columns:170px 1fr; gap:22px; align-items:start;}
-  .session-item .when{font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:.78rem; letter-spacing:.06em; color:var(--indigo); text-transform:uppercase; line-height:1.5;}
-  .session-item h4{margin:0 0 .35em 0; font-size:1.08rem; color:var(--navy);}
-  .session-item p{margin:0 0 .5em 0; font-size:.9rem; color:var(--text-soft);}
-  .session-item p:last-child{margin-bottom:0;}
-  .session-item .tag{display:inline-block; margin-top:6px; font-size:.72rem; font-family:'Barlow Condensed',sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--cyan); font-weight:600;}
+  /* ======================================================================
+     CONFERÊNCIAS
+     ----------------------------------------------------------------------
+     Cada conferência é organizada em:
+       - foto/avatar do(a) conferencista
+       - tipo da conferência
+       - título
+       - descrição
+       - conferencista
+       - dia, hora e sala/link
 
-  @media (max-width:640px){
-    .session-item{grid-template-columns:1fr; gap:8px;}
+     Para inserir a foto real, substitua o bloco .conference-avatar por:
+     <img src="images/nome-da-foto.jpg" alt="Nome do(a) conferencista">
+     ====================================================================== */
+  .conference-list{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    margin-top:40px;
+  }
+
+  .conference-card{
+    display:grid;
+    grid-template-columns:190px minmax(0,1fr);
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:4px solid var(--cyan);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+
+  .conference-photo{
+    background:var(--bg-alt);
+    min-height:100%;
+    padding:24px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+  }
+
+  .conference-photo img{
+    display:block;
+    width:100%;
+    max-width:150px;
+    aspect-ratio:1 / 1;
+    object-fit:cover;
+    border-radius:50%;
+    border:4px solid #fff;
+    box-shadow:0 6px 18px rgba(11,31,63,.10);
+  }
+
+  .conference-avatar{
+    width:142px;
+    aspect-ratio:1 / 1;
+    border-radius:50%;
+    background:#fff;
+    border:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    color:var(--text-soft);
+    text-align:center;
+    padding:18px;
+  }
+
+  .conference-avatar svg{
+    width:54px;
+    height:54px;
+    fill:none;
+    stroke:var(--indigo);
+    stroke-width:1.6;
+  }
+
+  .conference-avatar span{
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.68rem;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    line-height:1.25;
+  }
+
+  .conference-content{
+    padding:28px 30px 30px;
+    min-width:0;
+  }
+
+  .conference-type{
+    display:block;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--indigo);
+    margin-bottom:8px;
+  }
+
+  .conference-title{
+    font-size:1.35rem;
+    margin:0 0 12px;
+    color:var(--navy);
+  }
+
+  .conference-description{
+    margin:0 0 20px;
+    max-width:78ch;
+    color:var(--text-soft);
+    font-size:.94rem;
+    line-height:1.65;
+  }
+
+  .conference-speaker{
+    padding:14px 16px;
+    background:var(--bg);
+    border-left:3px solid var(--indigo);
+    margin-bottom:20px;
+  }
+
+  .conference-speaker span,
+  .conference-meta span{
+    display:block;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.68rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--indigo);
+    margin-bottom:3px;
+  }
+
+  .conference-speaker strong{
+    display:block;
+    color:var(--navy);
+    font-family:'Nunito Sans',sans-serif;
+    font-size:1rem;
+    line-height:1.35;
+  }
+
+  .conference-speaker small{
+    display:block;
+    margin-top:3px;
+    color:var(--text-soft);
+    font-size:.82rem;
+  }
+
+  .conference-meta{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    border:1px solid var(--line);
+  }
+
+  .conference-meta-item{
+    padding:13px 16px;
+    min-width:0;
+    border-right:1px solid var(--line);
+  }
+
+  .conference-meta-item:last-child{
+    border-right:none;
+  }
+
+  .conference-meta strong{
+    display:block;
+    color:var(--navy);
+    font-size:.9rem;
+    line-height:1.4;
+    overflow-wrap:anywhere;
+  }
+
+  .conference-meta a{
+    color:var(--navy);
+    font-weight:600;
+    text-decoration:none;
+    border-bottom:1px solid var(--cyan);
+  }
+
+  .conference-meta a:hover{
+    color:var(--indigo);
+  }
+
+  @media (max-width:760px){
+    .conference-card{
+      grid-template-columns:1fr;
+    }
+
+    .conference-photo{
+      padding:24px 20px 8px;
+      background:#fff;
+    }
+
+    .conference-avatar{
+      width:120px;
+    }
+
+    .conference-photo img{
+      max-width:120px;
+    }
+
+    .conference-content{
+      padding:18px 20px 24px;
+    }
+
+    .conference-title{
+      font-size:1.18rem;
+    }
+
+    .conference-meta{
+      grid-template-columns:1fr;
+    }
+
+    .conference-meta-item{
+      border-right:none;
+      border-bottom:1px solid var(--line);
+    }
+
+    .conference-meta-item:last-child{
+      border-bottom:none;
+    }
   }
 </style>
 </head>
@@ -342,37 +553,197 @@
     <a href="index.html#programacao" class="breadcrumb">&larr; Voltar para Programação</a>
     <span class="eyebrow">Programação · Conferências</span>
     <h1>Conferências</h1>
-    <p class="lede" style="max-width:62ch; color:var(--text-soft);">Três falas centrais marcam a abertura, o meio e o encerramento do evento, com convidados nacionais confirmados pela Comissão Organizadora.</p>
+    <p class="lede" style="max-width:62ch; color:var(--text-soft);">As conferências de abertura, meio e encerramento integram a programação central do VI SNS. Confira abaixo as informações de cada atividade.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap reveal">
-    <div class="session-list">
-      <div class="session-item">
-        <div class="when">09/11 &middot; 19h30</div>
-        <div>
-          <h4 class="placeholder">Conferência de Abertura</h4>
-          <p><strong>Convidado(a):</strong> <span class="placeholder">Nome</span></p>
-          <span class="tag">Auditório a definir</span>
+
+    <!-- ================================================================
+         CONFERÊNCIAS
+         Edite cada bloco abaixo com:
+         título, descrição, conferencista, instituição, dia, horário e sala/link.
+         ================================================================ -->
+    <div class="conference-list">
+
+      <article class="conference-card">
+        <div class="conference-photo">
+          <!-- FOTO DO(A) CONFERENCISTA:
+               Quando tiver a foto real, substitua o bloco conference-avatar
+               por:
+               <img src="images/foto-conferencista.jpg" alt="Nome do(a) conferencista">
+          -->
+          <div class="conference-avatar" aria-label="Espaço reservado para a foto do conferencista">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="23" r="11"></circle>
+              <path d="M12 55c2-12 10-18 20-18s18 6 20 18"></path>
+            </svg>
+            <span>Foto do(a)<br>conferencista</span>
+          </div>
         </div>
-      </div>
-      <div class="session-item">
-        <div class="when">10/11 &middot; 19h30</div>
-        <div>
-          <h4 class="placeholder">Conferência de Meio</h4>
-          <p><strong>Convidado(a):</strong> <span class="placeholder">Nome</span></p>
-          <span class="tag">Auditório a definir</span>
+
+        <div class="conference-content">
+          <span class="conference-type">Conferência de Abertura</span>
+
+          <!-- TÍTULO DA CONFERÊNCIA -->
+          <h2 class="conference-title">
+            <span class="placeholder">Título da conferência</span>
+          </h2>
+
+          <!-- DESCRIÇÃO DA CONFERÊNCIA -->
+          <p class="conference-description">
+            <span class="placeholder">Insira aqui uma breve descrição da conferência, apresentando o tema central e a proposta da atividade.</span>
+          </p>
+
+          <!-- CONFERENCISTA -->
+          <div class="conference-speaker">
+            <span>Conferencista</span>
+            <strong><span class="placeholder">Nome do(a) conferencista</span></strong>
+            <small><span class="placeholder">Instituição / vínculo acadêmico</span></small>
+          </div>
+
+          <!-- DIA, HORA E SALA/LINK -->
+          <div class="conference-meta">
+            <div class="conference-meta-item">
+              <span>Dia</span>
+              <strong>09/11/2026</strong>
+            </div>
+
+            <div class="conference-meta-item">
+              <span>Horário</span>
+              <strong>19h30 – 21h30</strong>
+            </div>
+
+            <div class="conference-meta-item">
+              <span>Sala / link</span>
+              <strong><span class="placeholder">A definir</span></strong>
+              <!-- Se houver transmissão on-line, você pode substituir por:
+                   <strong><a href="LINK" target="_blank" rel="noopener">Acessar transmissão</a></strong>
+              -->
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="session-item">
-        <div class="when">11/11 &middot; 19h30</div>
-        <div>
-          <h4 class="placeholder">Conferência de Encerramento</h4>
-          <p><strong>Convidado(a):</strong> <span class="placeholder">Nome</span></p>
-          <span class="tag">Auditório a definir</span>
+      </article>
+
+      <article class="conference-card">
+        <div class="conference-photo">
+          <!-- FOTO DO(A) CONFERENCISTA:
+               Quando tiver a foto real, substitua o bloco conference-avatar
+               por:
+               <img src="images/foto-conferencista.jpg" alt="Nome do(a) conferencista">
+          -->
+          <div class="conference-avatar" aria-label="Espaço reservado para a foto do conferencista">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="23" r="11"></circle>
+              <path d="M12 55c2-12 10-18 20-18s18 6 20 18"></path>
+            </svg>
+            <span>Foto do(a)<br>conferencista</span>
+          </div>
         </div>
-      </div>
+
+        <div class="conference-content">
+          <span class="conference-type">Conferência de Meio</span>
+
+          <!-- TÍTULO DA CONFERÊNCIA -->
+          <h2 class="conference-title">
+            <span class="placeholder">Título da conferência</span>
+          </h2>
+
+          <!-- DESCRIÇÃO DA CONFERÊNCIA -->
+          <p class="conference-description">
+            <span class="placeholder">Insira aqui uma breve descrição da conferência, apresentando o tema central e a proposta da atividade.</span>
+          </p>
+
+          <!-- CONFERENCISTA -->
+          <div class="conference-speaker">
+            <span>Conferencista</span>
+            <strong><span class="placeholder">Nome do(a) conferencista</span></strong>
+            <small><span class="placeholder">Instituição / vínculo acadêmico</span></small>
+          </div>
+
+          <!-- DIA, HORA E SALA/LINK -->
+          <div class="conference-meta">
+            <div class="conference-meta-item">
+              <span>Dia</span>
+              <strong>10/11/2026</strong>
+            </div>
+
+            <div class="conference-meta-item">
+              <span>Horário</span>
+              <strong>19h30 – 21h30</strong>
+            </div>
+
+            <div class="conference-meta-item">
+              <span>Sala / link</span>
+              <strong><span class="placeholder">A definir</span></strong>
+              <!-- Se houver transmissão on-line, você pode substituir por:
+                   <strong><a href="LINK" target="_blank" rel="noopener">Acessar transmissão</a></strong>
+              -->
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="conference-card">
+        <div class="conference-photo">
+          <!-- FOTO DO(A) CONFERENCISTA:
+               Quando tiver a foto real, substitua o bloco conference-avatar
+               por:
+               <img src="images/foto-conferencista.jpg" alt="Nome do(a) conferencista">
+          -->
+          <div class="conference-avatar" aria-label="Espaço reservado para a foto do conferencista">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="23" r="11"></circle>
+              <path d="M12 55c2-12 10-18 20-18s18 6 20 18"></path>
+            </svg>
+            <span>Foto do(a)<br>conferencista</span>
+          </div>
+        </div>
+
+        <div class="conference-content">
+          <span class="conference-type">Conferência de Encerramento</span>
+
+          <!-- TÍTULO DA CONFERÊNCIA -->
+          <h2 class="conference-title">
+            <span class="placeholder">Título da conferência</span>
+          </h2>
+
+          <!-- DESCRIÇÃO DA CONFERÊNCIA -->
+          <p class="conference-description">
+            <span class="placeholder">Insira aqui uma breve descrição da conferência, apresentando o tema central e a proposta da atividade.</span>
+          </p>
+
+          <!-- CONFERENCISTA -->
+          <div class="conference-speaker">
+            <span>Conferencista</span>
+            <strong><span class="placeholder">Nome do(a) conferencista</span></strong>
+            <small><span class="placeholder">Instituição / vínculo acadêmico</span></small>
+          </div>
+
+          <!-- DIA, HORA E SALA/LINK -->
+          <div class="conference-meta">
+            <div class="conference-meta-item">
+              <span>Dia</span>
+              <strong>11/11/2026</strong>
+            </div>
+
+            <div class="conference-meta-item">
+              <span>Horário</span>
+              <strong>19h30 – 21h30</strong>
+            </div>
+
+            <div class="conference-meta-item">
+              <span>Sala / link</span>
+              <strong><span class="placeholder">A definir</span></strong>
+              <!-- Se houver transmissão on-line, você pode substituir por:
+                   <strong><a href="LINK" target="_blank" rel="noopener">Acessar transmissão</a></strong>
+              -->
+            </div>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
