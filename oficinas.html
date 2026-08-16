@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oficinas — VI Seminário Nacional de Sociologia</title>
 <meta name="description" content="VI Seminário Nacional de Sociologia do PPGS/UFS. Os desafios da Sociologia e democracia em um mundo digital. Cronograma, programação e inscrições.">
-<link rel="icon" type="image/png" href="images/logo-web1.png">
-<link rel="apple-touch-icon" href="images/logo-web1.png">
+<link rel="icon" type="image/png" href="images/logo-web1.png?v=2">
+<link rel="apple-touch-icon" href="images/logo-web1.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800;6..12,900&display=swap" rel="stylesheet">
@@ -82,44 +82,312 @@
     padding:5px 60px; transform:rotate(38deg); z-index:999; box-shadow:0 2px 8px rgba(0,0,0,.3); pointer-events:none;
   }
 
-  /* NAV */
-  header.site-nav{position:sticky; top:0; z-index:100; background:rgba(245,246,249,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
-  .nav-inner{max-width:1140px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px;}
-  .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--navy);}
-  .brand-num{font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.7rem; color:var(--indigo); line-height:1;}
-  .brand-text{font-family:'Nunito Sans',sans-serif; font-weight:800; font-size:.86rem; line-height:1.2; color:var(--navy);}
-  .brand-text span{display:block; font-family:'Barlow Condensed',sans-serif; font-weight:500; font-size:.66rem; letter-spacing:.08em; color:var(--text-soft); text-transform:uppercase; margin-top:2px;}
-  .brand-logo{
-  height:38px;      /* ajuste a altura conforme o tamanho do seu logo */
-  width:auto;
-  display:block;
-}
-  nav.links{display:flex; gap:22px; align-items:center; flex-wrap:wrap;}
-  nav.links a{text-decoration:none; color:var(--navy); font-weight:500; font-size:.85rem; position:relative; padding:4px 0;}
-  nav.links a::after{content:""; position:absolute; left:0; bottom:-2px; width:0; height:1.5px; background:var(--cyan); transition:width .2s ease;}
-  nav.links a:hover::after{width:100%;}
-  .nav-cta{background:var(--navy); color:#fff!important; padding:9px 18px!important; border-radius:var(--radius); font-size:.78rem!important; font-weight:600!important; text-transform:uppercase; letter-spacing:.05em;}
-  .nav-cta::after{display:none;}
-  .burger{display:none; background:none; border:1.5px solid var(--navy); border-radius:4px; width:38px; height:34px; cursor:pointer; flex-direction:column; align-items:center; justify-content:center; gap:5px;}
-  .burger span{width:18px; height:2px; background:var(--navy); display:block;}
+  /* ==========================================================
+     NAVEGAÇÃO PADRONIZADA — TODAS AS PÁGINAS
+     ----------------------------------------------------------
+     Menu completo no desktop e no mobile.
+     O submenu "Programação" funciona apenas com HTML + CSS.
+     ========================================================== */
 
-  /* Dropdown — Programação */
-  .nav-item{position:relative; display:flex; align-items:center;}
-  .nav-item .caret{display:inline-block; font-size:.62em; margin-left:3px; transform:translateY(-1px);}
-  .dropdown{
-    position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(4px);
-    min-width:220px; background:#fff; border:1px solid var(--line); border-radius:var(--radius);
-    box-shadow:0 16px 36px rgba(11,31,63,.16); padding:18px 0 8px 0;
-    opacity:0; visibility:hidden; pointer-events:none;
+  header.site-nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(245,246,249,.96);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(6px);
+  }
+
+  .nav-inner{
+    max-width:1140px;
+    margin:0 auto;
+    padding:14px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    flex-shrink:0;
+  }
+
+  .brand-logo{
+    height:38px;
+    width:auto;
+    display:block;
+  }
+
+  /* ---------- DESKTOP ---------- */
+
+  .desktop-nav{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:14px;
+    min-width:0;
+  }
+
+  .desktop-nav > a,
+  .desktop-nav .nav-item > summary{
+    color:var(--navy);
+    text-decoration:none;
+    font-size:.80rem;
+    font-weight:500;
+    white-space:nowrap;
+  }
+
+  .desktop-nav > a:hover,
+  .desktop-nav .nav-item > summary:hover{
+    color:var(--indigo);
+  }
+
+  .desktop-nav .current-page{
+    color:var(--indigo);
+    font-weight:600;
+  }
+
+  .nav-cta{
+    background:var(--navy);
+    color:#fff!important;
+    padding:9px 15px!important;
+    border-radius:var(--radius);
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.76rem!important;
+    font-weight:600!important;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- SUBMENU PROGRAMAÇÃO ---------- */
+
+  .desktop-nav .nav-item{
+    position:relative;
+    display:block;
+  }
+
+  .desktop-nav .nav-item > summary{
+    list-style:none;
+    cursor:pointer;
+    user-select:none;
+  }
+
+  .desktop-nav .nav-item > summary::-webkit-details-marker{
+    display:none;
+  }
+
+  .desktop-nav .nav-item > summary::marker{
+    content:"";
+  }
+
+  .desktop-nav .caret{
+    display:inline-block;
+    margin-left:4px;
+    font-size:.62em;
+    transform:none;
+    transition:transform .16s ease;
+  }
+
+  .desktop-nav .nav-item[open] > summary .caret{
+    transform:rotate(180deg);
+  }
+
+  .desktop-nav .dropdown{
+    position:absolute;
+    top:calc(100% + 10px);
+    left:50%;
+    transform:translateX(-50%) translateY(4px);
+    min-width:220px;
+    padding:8px 0;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:0 16px 36px rgba(11,31,63,.14);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
     transition:opacity .16s ease, transform .16s ease, visibility .16s ease;
-    z-index:60;
+    z-index:80;
   }
-  .nav-item:hover .dropdown, .nav-item:focus-within .dropdown{
-    opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); pointer-events:auto;
+
+  .desktop-nav .nav-item[open] .dropdown,
+  .desktop-nav .nav-item:hover .dropdown,
+  .desktop-nav .nav-item:focus-within .dropdown{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateX(-50%) translateY(0);
   }
-  nav.links .dropdown a{display:block; padding:10px 20px; font-size:.84rem; color:var(--text); font-weight:500; white-space:nowrap;}
-  nav.links .dropdown a::after{display:none;}
-  nav.links .dropdown a:hover{background:var(--bg); color:var(--indigo);}
+
+  .desktop-nav .dropdown a{
+    display:block;
+    padding:9px 18px;
+    color:var(--text);
+    text-decoration:none;
+    font-size:.82rem;
+    font-weight:500;
+    white-space:nowrap;
+  }
+
+  .desktop-nav .dropdown a:hover{
+    color:var(--indigo);
+    background:var(--bg);
+  }
+
+  .desktop-nav .dropdown a.current-page{
+    color:var(--indigo);
+    font-weight:600;
+  }
+
+  /* ---------- MOBILE ---------- */
+
+  .mobile-nav{
+    display:none;
+  }
+
+  @media (max-width:900px){
+    .desktop-nav{
+      display:none;
+    }
+
+    .mobile-nav{
+      display:block;
+      position:relative;
+    }
+
+    .mobile-nav > summary{
+      list-style:none;
+      cursor:pointer;
+      width:40px;
+      height:36px;
+      border:1.5px solid var(--navy);
+      border-radius:4px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+    }
+
+    .mobile-nav > summary::-webkit-details-marker{
+      display:none;
+    }
+
+    .mobile-nav > summary::marker{
+      content:"";
+    }
+
+    .mobile-nav > summary > span{
+      display:block;
+      width:17px;
+      height:2px;
+      background:var(--navy);
+    }
+
+    .mobile-menu-panel{
+      position:absolute;
+      top:48px;
+      right:0;
+      width:min(330px, calc(100vw - 36px));
+      max-height:calc(100vh - 82px);
+      overflow-y:auto;
+      padding:14px 18px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 14px 34px rgba(11,31,63,.16);
+    }
+
+    .mobile-menu-panel > a{
+      display:block;
+      padding:9px 0;
+      color:var(--navy);
+      text-decoration:none;
+      font-size:.9rem;
+      font-weight:500;
+      border-bottom:1px solid var(--line);
+    }
+
+    .mobile-menu-panel > a.current-page{
+      color:var(--indigo);
+      font-weight:600;
+    }
+
+    .mobile-submenu{
+      border-bottom:1px solid var(--line);
+    }
+
+    .mobile-submenu > summary{
+      list-style:none;
+      cursor:pointer;
+      width:100%;
+      padding:9px 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color:var(--navy);
+      font-size:.9rem;
+      font-weight:500;
+    }
+
+    .mobile-submenu > summary::-webkit-details-marker{
+      display:none;
+    }
+
+    .mobile-submenu > summary::marker{
+      content:"";
+    }
+
+    .mobile-submenu .caret{
+      display:inline-block;
+      width:auto;
+      height:auto;
+      margin:0;
+      background:none;
+      font-size:.72em;
+      transform:none;
+      transition:transform .16s ease;
+    }
+
+    .mobile-submenu[open] > summary .caret{
+      transform:rotate(180deg);
+    }
+
+    .mobile-submenu-links{
+      margin:0 0 7px 0;
+      padding:2px 0 7px 14px;
+      border-left:2px solid var(--line);
+    }
+
+    .mobile-submenu-links a{
+      display:block;
+      padding:7px 0;
+      color:var(--text-soft);
+      text-decoration:none;
+      font-size:.84rem;
+    }
+
+    .mobile-submenu-links a.current-page{
+      color:var(--indigo);
+      font-weight:600;
+    }
+  }
+
+  @media (max-width:460px){
+    .nav-inner{
+      padding-left:18px;
+      padding-right:18px;
+    }
+
+    .brand-logo{
+      height:34px;
+    }
+  }
+
+
 
   /* HERO */
   .hero{position:relative; padding:70px 0 90px 0; color:var(--text); background:#fff; z-index:1;}
@@ -302,6 +570,218 @@
   @media (max-width:640px){
     .session-item{grid-template-columns:1fr; gap:8px;}
   }
+
+
+  /* =====================================================================
+     RODAPÉ PADRONIZADO — MESMO PADRÃO VISUAL DO INDEX
+     ===================================================================== */
+
+  footer{
+    background:rgba(5,11,24,.95);
+    color:#DCE1F0;
+    padding:56px 0 26px;
+    position:relative;
+  }
+
+  footer .footer-top{
+    display:grid;
+    grid-template-columns:1.4fr .8fr .8fr;
+    align-items:start;
+    gap:48px;
+    padding-bottom:34px;
+    border-bottom:1px solid rgba(255,255,255,.14);
+  }
+
+  footer .footer-top > *{
+    min-width:0;
+  }
+
+  footer .footer-brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:12px;
+  }
+
+  footer .footer-brand img{
+    height:46px;
+    width:auto;
+    display:block;
+    margin:0;
+  }
+
+  footer .footer-label{
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.7rem;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--cyan);
+  }
+
+  footer .footer-description{
+    max-width:42ch;
+    color:#9AA4C4;
+    font-size:.9rem;
+    margin:.4rem 0 1.4rem;
+  }
+
+  footer .footer-contact{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    margin-bottom:14px;
+  }
+
+  footer .footer-contact span{
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.78rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:#C3CAE0;
+  }
+
+  footer .footer-contact a{
+    color:#fff;
+    font-size:.9rem;
+    text-decoration:none;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  footer h4{
+    color:#fff;
+    font-family:'Nunito Sans',sans-serif;
+    font-size:1.05rem;
+    font-weight:700;
+    margin:0 0 16px;
+  }
+
+  footer .footer-link-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+
+  footer .footer-link-list li{
+    margin:8px 0;
+  }
+
+  footer .footer-link-list a{
+    color:#C3CAE0;
+    text-decoration:none;
+    font-size:.88rem;
+  }
+
+  footer .footer-link-list a:hover{
+    color:#fff;
+  }
+
+  footer .footer-location p{
+    color:#C3CAE0;
+    font-size:.88rem;
+    line-height:1.6;
+    margin:0 0 16px;
+  }
+
+  /* Botão "Ver no Google Maps" igual ao index, sem afetar outros botões */
+  footer .footer-location .btn{
+    display:inline-block;
+    margin-left:0;
+    text-decoration:none;
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    padding:13px 28px;
+    border-radius:var(--radius);
+    border:1.5px solid rgba(255,255,255,.55);
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+
+  footer .footer-location .btn-outline{
+    background:transparent;
+    color:#fff;
+    border-color:rgba(255,255,255,.55);
+  }
+
+  footer .footer-location .btn-outline:hover{
+    border-color:#fff;
+    background:rgba(255,255,255,.08);
+  }
+
+  footer .social-row{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+    margin-top:14px;
+  }
+
+  footer .social-link{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    width:auto;
+    height:auto;
+    color:#C3CAE0;
+    text-decoration:none;
+    font-size:.84rem;
+    border:0;
+    border-radius:0;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  footer .social-link svg{
+    width:18px;
+    height:18px;
+    fill:#fff;
+    flex-shrink:0;
+  }
+
+  footer .social-link:hover{
+    color:#fff;
+    background:transparent;
+    border:0;
+  }
+
+  footer .social-link:hover svg{
+    fill:#fff;
+  }
+
+  footer .foot-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+    padding-top:20px;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.72rem;
+    color:#77809E;
+  }
+
+  @media (max-width:1050px){
+    footer .footer-top{
+      grid-template-columns:1fr 1fr;
+      gap:36px;
+    }
+  }
+
+  @media (max-width:760px){
+    footer .footer-top{
+      grid-template-columns:1fr;
+      gap:36px;
+    }
+
+    footer .foot-bottom{
+      flex-direction:column;
+      align-items:flex-start;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -311,29 +791,83 @@
 
 <header class="site-nav">
   <div class="nav-inner">
+
     <a href="index.html#inicio" class="brand">
-  <img src="images/logo-topo.png" alt="VI Seminário Nacional de Sociologia — PPGS · UFS" class="brand-logo">
-  </a>
-    <button class="burger" id="burger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
-    <nav class="links" id="navLinks">
+      <img
+        src="images/logo-topo.png"
+        alt="VI Seminário Nacional de Sociologia — PPGS · UFS"
+        class="brand-logo"
+      >
+    </a>
+
+    <!-- MENU DESKTOP -->
+    <nav class="desktop-nav" aria-label="Navegação principal">
+
       <a href="index.html#inicio">Início</a>
       <a href="index.html#cronograma">Cronograma</a>
-      <div class="nav-item">
-        <a href="index.html#programacao">Programação <span class="caret">▾</span></a>
+
+      <details class="nav-item">
+        <summary>
+          Programação
+          <span class="caret">▾</span>
+        </summary>
+
         <div class="dropdown">
+          <a href="programacao.html">Programação geral</a>
           <a href="conferencias.html">Conferências</a>
           <a href="gts.html">Grupos de Trabalho</a>
           <a href="mesas.html">Mesas-redondas</a>
-          <a href="oficinas.html">Oficinas</a>
+          <a href="oficinas.html" class="current-page">Oficinas</a>
           <a href="webinar.html">Webinar</a>
         </div>
-      </div>
-      <a href="index.html#submissoes">Submissões</a>
+      </details>
+
+      <a href="index.html#submissoes">Submissão de Resumo</a>
       <a href="index.html#comissao">Comissão</a>
       <a href="index.html#apoio">Apoio &amp; Links</a>
       <a href="resultados.html">Resultados</a>
       <a href="index.html#inscricao" class="nav-cta">Inscrição</a>
+
     </nav>
+
+    <!-- MENU MOBILE — sem JavaScript -->
+    <details class="mobile-nav">
+      <summary aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+
+      <nav class="mobile-menu-panel" aria-label="Navegação mobile">
+
+        <a href="index.html#inicio">Início</a>
+        <a href="index.html#cronograma">Cronograma</a>
+
+        <details class="mobile-submenu">
+          <summary>
+            Programação
+            <span class="caret">▾</span>
+          </summary>
+
+          <div class="mobile-submenu-links">
+            <a href="programacao.html">Visão geral</a>
+            <a href="conferencias.html">Conferências</a>
+            <a href="gts.html">Grupos de Trabalho</a>
+            <a href="mesas.html">Mesas-redondas</a>
+            <a href="oficinas.html" class="current-page">Oficinas</a>
+            <a href="webinar.html">Webinar</a>
+          </div>
+        </details>
+
+        <a href="index.html#submissoes">Submissão de Resumo</a>
+        <a href="index.html#comissao">Comissão</a>
+        <a href="index.html#apoio">Apoio &amp; Links</a>
+        <a href="resultados.html">Resultados</a>
+        <a href="index.html#inscricao">Inscrição</a>
+
+      </nav>
+    </details>
+
   </div>
 </header>
 
@@ -342,7 +876,7 @@
     <a href="index.html#programacao" class="breadcrumb">&larr; Voltar para Programação</a>
     <span class="eyebrow">Programação · Oficinas</span>
     <h1>Oficinas</h1>
-    <p class="lede" style="max-width:62ch; color:var(--text-soft);">Atividades formativas práticas, com vagas limitadas por oficina — até sete propostas serão selecionadas pela Comissão Organizadora.</p>
+    <p class="lede" style="max-width:62ch; color:var(--text-soft);">Atividades de caráter prático e participativo, voltadas ao <strong>desenvolvimento de conhecimentos, técnicas e/ou habilidades específicas.</strong> </p>
   </div>
 </section>
 
@@ -373,38 +907,137 @@
 
 <footer>
   <div class="wrap">
+
     <div class="footer-top">
-      <div>
-        <h4>VI Seminário Nacional de Sociologia</h4>
-        <p style="max-width:36ch; color:#9AA4C4; font-size:.9rem;">PPGS · Universidade Federal de Sergipe — Didática VII, Campus São Cristóvão.</p>
-        <p class="foot-contact">visnsufs@gmail.com</p>
-        <p class="foot-handles">Instagram: @ppgs.ufs · @visnsufs</p>
-      </div>
-      <div>
-        <h4>Siga o evento</h4>
-        <div class="social-row">
-          <a href="https://instagram.com/visnsufs" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.05.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.07.06 1.41.06 4.13s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.07.05-1.41.06-4.12.06s-3.05-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76a4.9 4.9 0 0 1 1.76-1.15c.64-.25 1.37-.42 2.43-.47C8.95 2.01 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.4-8.4a1.17 1.17 0 1 0 0-2.34 1.17 1.17 0 0 0 0 2.34z"/></svg>
-          </a>
-          <a href="https://www.youtube.com/@vsnsufs2024" target="_blank" rel="noopener" aria-label="YouTube">
-            <svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14C4.49 20.5 12 20.5 12 20.5s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+
+      <!-- EVENTO / CONTATO -->
+      <div class="footer-info">
+
+        <div class="footer-brand">
+          <img
+            src="images/logo-rodape.png"
+            alt="VI Seminário Nacional de Sociologia — PPGS/UFS"
+          >
+
+          <div>
+            <div class="footer-label">VI SNS · 2026</div>
+          </div>
+        </div>
+
+        <p class="footer-description">
+          Programa de Pós-Graduação em Sociologia<br>
+          Universidade Federal de Sergipe
+        </p>
+
+        <div class="footer-contact">
+          <span>Contato</span>
+          <a href="mailto:visnsufs@gmail.com">
+            visnsufs@gmail.com
           </a>
         </div>
+
+       
+        <div class="social-row">
+
+  <!-- Instagram VI SNS -->
+  <a
+    href="https://instagram.com/visnsufs"
+    target="_blank"
+    rel="noopener"
+    class="social-link"
+    aria-label="Instagram VI SNS"
+  >
+    <svg viewBox="0 0 24 24">
+      <path d="M12 2c2.7 0 3.05.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.07.06 1.41.06 4.13s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.07.05-1.41.06-4.12.06s-3.05-.01-4.12-.06c-.87-.04-1.56-.13-2.14-.31a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76a4.9 4.9 0 0 1 1.76-1.15c.64-.25 1.37-.42 2.43-.47C8.95 2.01 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.4-8.4a1.17 1.17 0 1 0 0-2.34 1.17 1.17 0 0 0 0 2.34z"/>
+    </svg>
+
+    <span>@visnsufs</span>
+  </a>
+
+
+  <!-- Instagram PPGS/UFS -->
+  <a
+    href="https://instagram.com/ppgs.ufs"
+    target="_blank"
+    rel="noopener"
+    class="social-link"
+    aria-label="Instagram PPGS UFS"
+  >
+    <svg viewBox="0 0 24 24">
+      <path d="M12 2c2.7 0 3.05.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.07.06 1.41.06 4.13s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.07.05-1.41.06-4.12.06s-3.05-.01-4.12-.06c-.87-.04-1.56-.13-2.14-.31a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76a4.9 4.9 0 0 1 1.76-1.15c.64-.25 1.37-.42 2.43-.47C8.95 2.01 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.4-8.4a1.17 1.17 0 1 0 0-2.34 1.17 1.17 0 0 0 0 2.34z"/>
+    </svg>
+
+    <span>@ppgs.ufs</span>
+  </a>
+
+
+  <!-- YouTube VI SNS -->
+  <a
+    href="https://www.youtube.com/@vsnsufs2024"
+    target="_blank"
+    rel="noopener"
+    class="social-link"
+    aria-label="YouTube VI SNS"
+  >
+    <svg viewBox="0 0 24 24">
+      <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14C4.49 20.5 12 20.5 12 20.5s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/>
+    </svg>
+
+    <span>YouTube VI SNS</span>
+  </a>
+
+</div>
+
+
+        
       </div>
+
+
+      <!-- ATALHOS -->
+      <div class="footer-nav">
+        <h4>Atalhos</h4>
+
+        <ul class="footer-link-list">
+          <li><a href="index.html#inicio">Início</a></li>
+          <li><a href="index.html#programacao">Programação</a></li>
+          <li><a href="index.html#resultados">Resultados</a></li>
+          <li><a href="index.html#inscricao">Inscrição</a></li>
+        </ul>
+      </div>
+
+
+      <!-- LOCAL -->
+      <div class="footer-location">
+        <h4>Local</h4>
+
+        <p>
+          Didática VII — UFS<br>
+          São Cristóvão, Sergipe
+        </p>
+
+        <a
+          href="https://maps.app.goo.gl/8ikUXxegfczGUgFb9?g_st=ac"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline"
+        >
+          Ver no Google Maps
+        </a>
+      </div>
+
     </div>
+
+
+    <!-- RODAPÉ INFERIOR -->
     <div class="foot-bottom">
       <span>SNS · PPGS/UFS — versão beta, conteúdo em revisão.</span>
       <span>© 2026</span>
     </div>
+
   </div>
 </footer>
 
 <script>
-  const burger = document.getElementById('burger');
-  const navLinks = document.getElementById('navLinks');
-  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });

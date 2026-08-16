@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VI Seminário Nacional de Sociologia — PPGS/UFS</title>
 <meta name="description" content="VI Seminário Nacional de Sociologia do PPGS/UFS. Os desafios da Sociologia e democracia em um mundo digital. Cronograma, programação e inscrições.">
-<link rel="icon" type="image/png" href="images/logo-web1.png?v=2">
-<link rel="apple-touch-icon" href="images/logo-web1.png?v=2">
+<link rel="icon" type="image/png" href="images/logo-web1.png">
+<link rel="apple-touch-icon" href="images/logo-web1.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800;6..12,900&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
                                  para não se confundir com a seção seguinte (Resultados) */
 
     /* --- Aviso geral do site --- */
-    --aviso-display:block;    /* block = mostra o aviso | none = esconde o aviso */
+    --aviso-display:none;    /* block = mostra o aviso | none = esconde o aviso */
 
     /* --- Paleta principal (marca do evento) --- */
     --navy:#0B1F3F;          /* azul bem escuro — títulos, botões, seções .dark */
@@ -1268,7 +1268,7 @@ footer h4 {
       <details class="nav-item">
         <summary>Programação <span class="caret">▾</span></summary>
         <div class="dropdown">
-          <a href="#programacao">Visão geral</a>
+          <a href="programacao.html">Programação geral</a>
           <a href="conferencias.html">Conferências</a>
           <a href="gts.html">Grupos de Trabalho</a>
           <a href="mesas.html">Mesas-redondas</a>
@@ -1389,7 +1389,6 @@ footer h4 {
 <section class="alt textura-fundo textura--bl" id="cronograma">
   <div class="wrap reveal">
     <h2>Cronograma</h2>
-    <p class="lede" style="max-width:60ch; color:var(--text-soft);">Datas oficiais do VI SNS.</p>
     <div class="crono-table-wrap" role="region" aria-label="Cronograma do evento" tabindex="0">
       <table class="crono-table">
         <thead><tr><th>Data</th><th>Atividade</th></tr></thead>
@@ -1409,7 +1408,6 @@ footer h4 {
 <section id="programacao" class="textura-fundo textura--tl">
   <div class="wrap reveal">
     <h2>Grade do evento</h2>
-    <p class="lede" style="max-width:60ch; color:var(--text-soft);">Estrutura geral dos três dias do VI SNS. Títulos, coordenações e locais/links de cada atividade serão publicados assim que confirmados.</p>
     <div class="prog-table-wrap">
       <table class="prog-table">
         <thead><tr><th>Horário</th><th>09/11</th><th>10/11</th><th>11/11</th></tr></thead>
@@ -1426,11 +1424,11 @@ footer h4 {
     </div>
 
     <div class="format-grid">
-      <a href="conferencias.html" class="format-card"><span class="cond">Conferências</span><h4>Três falas centrais</h4><p>Abertura, meio e encerramento do evento, com convidados nacionais.</p></a>
-      <a href="gts.html" class="format-card"><span class="cond">GTs</span><h4>Grupos de Trabalho</h4><p>Sessões temáticas de apresentação de resumos, por dia e por eixo.</p></a>
-      <a href="mesas.html" class="format-card"><span class="cond">Mesas</span><h4>Mesas-redondas</h4><p>Debates com coordenação, expositores e debatedores convidados.</p></a>
-      <a href="oficinas.html" class="format-card"><span class="cond">Oficinas</span><h4>Até sete propostas</h4><p>Atividades formativas práticas, com vagas limitadas por oficina.</p></a>
-      <a href="webinar.html" class="format-card"><span class="cond">Webinar</span><h4>Atividade remota</h4><p>Transmissão aberta ao público pelo canal do YouTube do evento.</p></a>
+      <a href="conferencias.html" class="format-card"><span class="cond">Conferências</span><h4>3 Conferências</h4><p>Conferência de Abertura, de Meio e de Encerramento.</p></a>
+      <a href="gts.html" class="format-card"><span class="cond">GTs</span><h4>8 Grupos de Trabalho</h4><p>Apresentação de pesquisas e discussões.</p></a>
+      <a href="mesas.html" class="format-card"><span class="cond">Mesas</span><h4>8 Mesas-redondas</h4><p>Discussões e circulação de conhecimentos.</p></a>
+      <a href="oficinas.html" class="format-card"><span class="cond">Oficinas</span><h4>7 Oficinas práticas</h4><p>Atividades práticas e participativas de aprendizagem.</p></a>
+      <a href="webinar.html" class="format-card"><span class="cond">Webinar</span><h4>Atividade remota</h4><p>Diálogo acadêmico em formato online, transmitido pelo canal do evento.</p></a>
     </div>
   </div>
 </section>
@@ -1452,8 +1450,6 @@ footer h4 {
 <section class="alt textura-fundo textura--br" id="submissoes">
   <div class="wrap reveal">
     <h2>Submissão de Resumo</h2>
-    <p class="lede" style="max-width:64ch; color:var(--text-soft);">Confira abaixo as regras para envio do resumo expandido, o que deve constar no PDF e, mais adiante, as regras de formatação do Paper completo.</p>
-
     <!-- 1. DADOS RÁPIDOS — altere aqui datas, e-mail, formato e nº de autores.
          As duas colunas (subm-facts-col) usam a mesma proporção 1.1fr/.9fr
          do bloco 2 (subm-layout) para que as linhas divisórias fiquem alinhadas. -->
@@ -1510,7 +1506,6 @@ footer h4 {
     <div class="subm-paper">
       <div class="subm-paper-head">
         <h3>Regras de formatação do Paper</h3>
-        <p>Depois da aprovação do resumo, o Paper completo deve ser enviado seguindo essas regras de formatação.</p>
       </div>
 
       <div class="subm-paper-grid">
@@ -1518,7 +1513,7 @@ footer h4 {
           <div class="subm-cover">
             <div class="subm-cover-top">Capa de rosto deve conter</div>
             <ul>
-              <li><strong>VI SNS/UFS</strong> — negrito e letra 14</li>
+              <li><strong>V SNS/UFS</strong> — negrito e letra 14</li>
               <li>Título do GT</li>
               <li>Título do trabalho</li>
               <li>Autor(a) e coautores(as), com as respectivas filiações institucionais</li>
